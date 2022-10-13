@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-
 //Components
 import Appointment from "../../components/Appointment/Appointment";
-
 //Containers
 import Products from "../../containers/Products/Products";
 import Services from "../../containers/Services/Services";
 import Testimonials from "../../containers/Testimonials/Testimonials";
 import Gallery from "../../containers/Gallery/Gallery";
 import Map from "../../components/Map/Map";
-
 //Assets
 import {
   programming,
