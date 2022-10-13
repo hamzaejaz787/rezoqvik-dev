@@ -1,0 +1,11 @@
+.user__testimonials-heading {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 50px;
+  position: absolute;
+  text-align: right;
+  right: 0;
+}
+
+.user__testimonials-wrapper {
+  padding: 5rem 1rem 2.5rem;
+}

@@ -1,0 +1,10 @@
+#map {
+  border-radius: 15px;
+  height: 300px;
+  margin: 1.5em auto;
+  max-width: 800px;
+}
+
+.map__container {
+  padding: 1rem;
+}

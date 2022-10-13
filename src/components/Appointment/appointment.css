@@ -1,0 +1,78 @@
+.appointment__container {
+  padding: 1rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  margin: 1em auto;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.appointment__container-dates {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appointment__container span {
+  font-size: 1.1rem;
+  color: #353535;
+  padding-right: 2rem;
+}
+
+.appointment__container-dates input {
+  background-color: #edf2f8;
+  border: none;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.appointment__container-dates input::placeholder {
+  text-align: center;
+}
+
+.appointment__container-dates input[type="date"] {
+  border: none;
+  outline: none;
+}
+
+.appointment__container-timings {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 1rem 0;
+}
+
+.appointment__container-timings-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1em;
+  width: 100%;
+}
+
+.appointment__container-timings button {
+  background-color: #edf2f8;
+  border: 2px solid transparent;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.appointment__container-timings button:hover,
+.appointment__container-timings button:focus {
+  background-color: #e2e2e2;
+  border-color: #aaa;
+}
+
+.appointment__container-timings button:active {
+  background-color: #d8d8d8;
+}
+
+.appointment-btn {
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+}

@@ -1,0 +1,28 @@
+.user__services_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  padding: 1rem;
+  margin: 2em 0 1em 1em;
+}
+
+.user__services_container svg {
+  min-width: 80px;
+  height: 100%;
+}
+
+.user__services_container-text {
+  margin-left: 0.75rem;
+}
+
+.user__services_container-text h4 {
+  font-weight: 500;
+}
+
+.user__services_container-text p {
+  font-size: 0.75rem;
+  color: #919191;
+}

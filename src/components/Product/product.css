@@ -1,0 +1,26 @@
+.product__card {
+  max-width: 330px;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.product__card img {
+  width: 100%;
+}
+
+.product__card-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.product__card-text {
+  color: rgb(53, 53, 53);
+}
+
+.product__card-price {
+  font-weight: 500;
+}

@@ -1,0 +1,30 @@
+.intro__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro__container-title {
+  font-size: 3rem;
+  background: linear-gradient(
+    120deg,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.intro__container-text {
+  font-size: 1.25rem;
+  color: rgb(53, 53, 53);
+  padding: 1rem 0 2rem;
+}
+
+.intro-cta {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}

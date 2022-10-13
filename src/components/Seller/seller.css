@@ -1,0 +1,49 @@
+.seller__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  max-width: 300px;
+  min-height: 200px;
+}
+
+.seller__card_user-name {
+  font-size: 1.75rem;
+  padding: 1rem 0;
+}
+
+.seller__card_user-title {
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  color: rgb(53, 53, 53);
+}
+
+.seller__card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.seller__card_user-link {
+  text-align: center;
+  background: linear-gradient(
+    120deg,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  color: #fff;
+  letter-spacing: 1.5px;
+  padding: 0.5rem 1rem;
+}
+.seller__card_user-link:hover {
+  background: linear-gradient(
+    120deg,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
