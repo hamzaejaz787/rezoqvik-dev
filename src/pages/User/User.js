@@ -20,6 +20,9 @@ import {
   FaBirthdayCake,
   IoMdMail,
   HiLocationMarker,
+  AiFillIdcard,
+  RiParentLine,
+  userOne,
 } from "./imports";
 
 //CSS import
@@ -34,11 +37,7 @@ const User = () => {
     <>
       <section className="user__container">
         <img src={programming} alt="" className="user__container-cover-img" />
-        <img
-          src={currentUser.photoURL}
-          alt=""
-          className="user__container-user-img"
-        />
+        <img src={userOne} alt="" className="user__container-user-img" />
         <div className="user__container_text-wrapper">
           <h4 className="user__container-name">
             {!currentUser.displayName
@@ -87,7 +86,7 @@ const User = () => {
             <FaPhoneAlt size={24} style={{ fill: "url(#purple-gradient)" }} />
             <div className="user__container_info-card-text">
               <small>Mobile Number</small>
-              <h3>+968 9960 7313</h3>
+              <h3>+92 321 123123</h3>
             </div>
           </div>
           <div className="user__container_info-card">
@@ -115,7 +114,23 @@ const User = () => {
 
             <div className="user__container_info-card-text">
               <small>Location</small>
-              <h3>Muscat - Oman</h3>
+              <h3>Karachi - Pakistan</h3>
+            </div>
+          </div>
+          <div className="user__container_info-card">
+            <AiFillIdcard size={24} style={{ fill: "url(#purple-gradient)" }} />
+
+            <div className="user__container_info-card-text">
+              <small>CNIC</small>
+              <h3>37405-1234567-8</h3>
+            </div>
+          </div>
+          <div className="user__container_info-card">
+            <RiParentLine size={24} style={{ fill: "url(#purple-gradient)" }} />
+
+            <div className="user__container_info-card-text">
+              <small>Father Name</small>
+              <h3>Lorem ipsum</h3>
             </div>
           </div>
         </div>

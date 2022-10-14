@@ -1,5 +1,5 @@
 import Seller from "../../components/Seller/Seller";
-import { userOne, userTwo, userThree, userFour, userFive } from "./imports";
+import { userOne, userTwo, userThree, userFour } from "./imports";
 import "./sellers.css";
 
 const sellersData = [
@@ -20,11 +20,6 @@ const sellersData = [
   },
   {
     sellerImage: userFour,
-    sellerName: "Rachel Weisz",
-    sellerTitle: "Web Developer",
-  },
-  {
-    sellerImage: userFive,
     sellerName: "Rachel Weisz",
     sellerTitle: "Web Developer",
   },

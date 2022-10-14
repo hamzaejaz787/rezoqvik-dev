@@ -9,7 +9,7 @@ import {
   Signup,
   Login,
   ForgotPassword,
-} from "./pages";
+} from "./pages/export";
 import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {

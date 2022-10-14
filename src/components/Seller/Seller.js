@@ -9,7 +9,7 @@ const Seller = ({ sellerImage, sellerName, sellerTitle }) => {
         <h4 className="seller__card_user-name">{sellerName}</h4>
         <small className="seller__card_user-title">{sellerTitle}</small>
         <Link to="/user" className="seller__card_user-link btn">
-          Learn More
+          Hire now
         </Link>
       </div>
     </>

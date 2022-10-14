@@ -10,9 +10,10 @@ const Map = () => {
   return (
     <>
       <div className="map__container">
-        <LoadScript googleMapsApiKey="AIzaSyALWis7eNAWZ2cJbUZ_qX7LrZdfhdhrAjo">
+        <LoadScript
+          googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+        >
           <GoogleMap id="map" center={center} zoom={10}>
-            {/* Child components, such as markers, info windows, etc. */}
             <></>
           </GoogleMap>
         </LoadScript>

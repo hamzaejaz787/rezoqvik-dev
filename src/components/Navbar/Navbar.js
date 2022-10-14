@@ -10,11 +10,14 @@ function Navbar() {
         </Link>
 
         <ul className="navbar-lists">
-          <li className="nav-links">
+          <li className="nav-links line">
             <Link to="/about">About</Link>
           </li>
-          <li className="nav-links">
+          <li className="nav-links line">
             <Link to="/support">Support</Link>
+          </li>
+          <li className="nav-links line">
+            <Link to="/login">Log In</Link>
           </li>
           <li className="nav-links">
             <Link to="/signup">

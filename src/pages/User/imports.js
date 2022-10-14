@@ -12,6 +12,8 @@ import {
 import { IoMdMail } from "react-icons/io";
 import { HiLocationMarker } from "react-icons/hi";
 import { MdOutlineWeb, MdOutlinePhotoCamera } from "react-icons/md";
+import { AiFillIdcard } from "react-icons/ai";
+import { RiParentLine } from "react-icons/ri";
 
 export {
   userOne,
@@ -27,4 +29,6 @@ export {
   HiLocationMarker,
   MdOutlineWeb,
   MdOutlinePhotoCamera,
+  AiFillIdcard,
+  RiParentLine,
 };

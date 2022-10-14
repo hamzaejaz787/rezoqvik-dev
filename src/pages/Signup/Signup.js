@@ -77,13 +77,16 @@ const Signup = () => {
 
         {error && alert(error)}
 
-        <form className="signup__container-form" onSubmit={handleSubmit}>
+        <form
+          className="signup__container-form"
+          method="POST"
+          onSubmit={handleSubmit}
+        >
           <input
             type="file"
             accept="image/png, image/jpeg"
             ref={picRef}
             onChange={handleChange}
-            required
           />
 
           <button onClick={handleImage}>Upload</button>

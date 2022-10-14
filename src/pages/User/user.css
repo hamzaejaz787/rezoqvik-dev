@@ -1,8 +1,11 @@
+.user__container {
+  position: relative;
+}
+
 .user__container-cover-img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  position: relative;
 }
 
 .user__container-user-img {
@@ -12,7 +15,7 @@
   border-radius: 50%;
   position: absolute;
   left: calc(50% - 45px);
-  top: calc(55% + 20px);
+  top: calc(15% - 10px);
 }
 
 .user__container_text-wrapper {
@@ -116,14 +119,16 @@
 @media screen and (min-width: 600px) {
   .user__container_info {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 1rem 3rem;
   }
+
   .user__container-user-img {
-    top: calc(50% - 10px);
+    top: calc(20% - 5px);
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1080px) {
   .user__container-user-img {
-    top: calc(45% - 25px);
+    top: calc(25% - 10px);
   }
 }
