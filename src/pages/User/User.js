@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 //Components
@@ -31,13 +32,21 @@ import "./user.css";
 const User = () => {
   const { currentUser } = useAuth();
 
-  console.log(currentUser.photoURL);
-
   return (
     <>
       <section className="user__container">
         <img src={programming} alt="" className="user__container-cover-img" />
-        <img src={userOne} alt="" className="user__container-user-img" />
+
+        {/* <div className="user__container_userImg"> */}
+        <img src={userOne} alt="" className="user__container_user-img" />
+
+        {/* <button>
+            <img src={plusWhite} alt="" />
+
+            <input type="file" accept="image/png, image/jpeg" />
+          </button>
+        </div> */}
+
         <div className="user__container_text-wrapper">
           <h4 className="user__container-name">
             {!currentUser.displayName
@@ -152,7 +161,7 @@ const User = () => {
       <Testimonials />
 
       <section className="user__contact">
-        <h2 className="user__contact-heading heading">Locate Me</h2>
+        <h2 className="user__contact-heading heading">Location</h2>
         <Map />
       </section>
     </>
