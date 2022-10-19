@@ -9,6 +9,7 @@ import {
   Signup,
   Login,
   ForgotPassword,
+  UserSettings,
 } from "./pages/export";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/usersettings" element={<UserSettings />} />
         </Routes>
       </AuthProvider>
     </>

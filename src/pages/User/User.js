@@ -1,15 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-//Components
-import Appointment from "../../components/Appointment/Appointment";
-//Containers
-import Products from "../../containers/Products/Products";
-import Services from "../../containers/Services/Services";
-import Testimonials from "../../containers/Testimonials/Testimonials";
-import Gallery from "../../containers/Gallery/Gallery";
-import Map from "../../components/Map/Map";
-//Assets
+
+//Assets, Components & Containers
 import {
   programming,
   FaFacebook,
@@ -24,6 +17,12 @@ import {
   AiFillIdcard,
   RiParentLine,
   userOne,
+  Products,
+  Services,
+  Testimonials,
+  Gallery,
+  Map,
+  Appointment,
 } from "./imports";
 
 //CSS import
@@ -37,15 +36,7 @@ const User = () => {
       <section className="user__container">
         <img src={programming} alt="" className="user__container-cover-img" />
 
-        {/* <div className="user__container_userImg"> */}
         <img src={userOne} alt="" className="user__container_user-img" />
-
-        {/* <button>
-            <img src={plusWhite} alt="" />
-
-            <input type="file" accept="image/png, image/jpeg" />
-          </button>
-        </div> */}
 
         <div className="user__container_text-wrapper">
           <h4 className="user__container-name">

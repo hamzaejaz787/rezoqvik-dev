@@ -50,7 +50,7 @@ const Login = () => {
           />
 
           <button disabled={loading} type="submit">
-            Login
+            Log In
           </button>
         </form>
 

@@ -15,6 +15,14 @@ import { MdOutlineWeb, MdOutlinePhotoCamera } from "react-icons/md";
 import { AiFillIdcard } from "react-icons/ai";
 import { RiParentLine } from "react-icons/ri";
 
+import Products from "../../containers/Products/Products";
+import Services from "../../containers/Services/Services";
+import Testimonials from "../../containers/Testimonials/Testimonials";
+import Gallery from "../../containers/Gallery/Gallery";
+import Map from "../../components/Map/Map";
+
+import Appointment from "../../components/Appointment/Appointment";
+
 export {
   userOne,
   programming,
@@ -31,4 +39,10 @@ export {
   MdOutlinePhotoCamera,
   AiFillIdcard,
   RiParentLine,
+  Products,
+  Services,
+  Testimonials,
+  Gallery,
+  Map,
+  Appointment,
 };
