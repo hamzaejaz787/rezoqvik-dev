@@ -6,7 +6,7 @@
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 1.75rem;
   background: linear-gradient(
     120deg,
     var(--gradient-purple),
@@ -15,6 +15,10 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
 }
 
 .sign-btn {
@@ -59,6 +63,101 @@
   position: absolute;
   right: 0;
   bottom: -5%;
+}
+
+.modal__container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__container-header h2 {
+  font-size: 1.5rem;
+  background: linear-gradient(
+    120deg,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.modal__container-header .btn {
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.modal__container-header .btn:hover {
+  box-shadow: none;
+}
+
+.modal__container_options {
+  margin: 1em 0;
+}
+
+.modal__container_options h3 {
+  font-size: 1.2rem;
+  color: rgb(53, 53, 53);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal__container_options-wrapper {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__container_options-wrapper ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.sign-up-input {
+  display: flex;
+  align-items: center;
+}
+
+.sign-up-input input {
+  appearance: none;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-right: 0.75em;
+  border: 2px solid #999;
+  transition: all 0.2s linear;
+}
+
+.sign-up-input input,
+.sign-up-input label {
+  cursor: pointer;
+}
+
+.sign-up-input input:checked {
+  border: 5px solid var(--gradient-purple);
+}
+
+.modal__container_options-wrapper .btn {
+  max-width: 250px;
+  font-size: 0.85rem;
+  margin: 2em auto 0;
+  padding: 0.75rem 2rem;
+  border: none;
 }
 
 @media screen and (max-width: 600px) {

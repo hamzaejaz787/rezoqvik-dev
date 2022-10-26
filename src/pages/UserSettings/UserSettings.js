@@ -19,7 +19,15 @@ const UserSettings = () => {
       borderBottom: "1px solid rgba(0,0,0,0.05)",
       color: state.isSelected ? "#000" : "rgb(65, 65, 65)",
       padding: 20,
-      background: "none",
+      cursor: "pointer",
+    }),
+
+    container: (provided, state) => ({
+      ...provided,
+      width: "100%",
+      border: !state.isFocused
+        ? "1px solid rgba(0, 0, 0, 0.05)"
+        : "1px solid #a83f8",
     }),
   };
 

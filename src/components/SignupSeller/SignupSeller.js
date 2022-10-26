@@ -3,9 +3,9 @@ import { useState, useRef } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import "./signup.css";
+import "./signup-seller.css";
 
-const Signup = () => {
+const SignupSeller = () => {
   const fnameRef = useRef();
   const lnameRef = useRef();
   const emailRef = useRef();
@@ -55,12 +55,12 @@ const Signup = () => {
     try {
       setError("");
       setLoading(true);
+      handleImage();
 
       await signup(
         emailRef.current.value,
         passwordRef.current.value,
-        fnameRef.current.value,
-        handleImage()
+        fnameRef.current.value
       );
 
       navigate("/user");
@@ -72,59 +72,62 @@ const Signup = () => {
   }
 
   return (
-    <div className="signup">
-      <div className="signup__container">
-        <h3>Sign Up to Find Work</h3>
+    <>
+      <div className="signup">
+        <div className="signup__container">
+          <h3>Join Us to Hire Talent</h3>
 
-        {error && alert(error)}
+          {error && alert(error)}
 
-        <form
-          className="signup__container-form"
-          method="POST"
-          onSubmit={handleSubmit}
-        >
-          <input
-            type="file"
-            accept="image/png, image/jpeg"
-            ref={picRef}
-            onChange={handleChange}
-          />
+          <form
+            className="signup__container-form"
+            method="POST"
+            onSubmit={handleSubmit}
+          >
+            <input
+              type="file"
+              accept="image/png, image/jpeg"
+              ref={picRef}
+              onChange={handleChange}
+            />
 
-          <input
-            type="text"
-            ref={fnameRef}
-            placeholder="First Name *"
-            required
-          />
-          <input type="text" ref={lnameRef} placeholder="Last Name" />
-          <input
-            type="email"
-            ref={emailRef}
-            placeholder="Email Address *"
-            required
-          />
-          <input
-            type="password"
-            ref={passwordRef}
-            placeholder="Password *"
-            required
-          />
-          <input
-            type="password"
-            ref={confirmPasswordRef}
-            placeholder="Confirm Password *"
-            required
-          />
+            <input
+              type="text"
+              ref={fnameRef}
+              placeholder="First Name *"
+              required
+            />
+            <input type="text" ref={lnameRef} placeholder="Last Name" />
+            <input
+              type="email"
+              ref={emailRef}
+              placeholder="Business Email Address *"
+              required
+            />
+            <input
+              type="password"
+              ref={passwordRef}
+              placeholder="Password *"
+              required
+            />
+            <input
+              type="password"
+              ref={confirmPasswordRef}
+              placeholder="Confirm Password *"
+              required
+            />
 
-          <button disabled={loading} type="submit">
-            Sign Up
-          </button>
-        </form>
-        <div className="signup__container-login">
-          Already have an account? <Link to="/login">Log In</Link>
+            <button disabled={loading} type="submit">
+              Sign Up
+            </button>
+          </form>
+          <div className="signup__container-login">
+            Already have an account? <Link to="/login">Log In</Link>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
-export default Signup;
+
+export default SignupSeller;
