@@ -6,3 +6,5 @@ export { default as Signup } from "./Signup/Signup";
 export { default as Login } from "./Login/Login";
 export { default as ForgotPassword } from "./ForgotPassword/ForgotPassword";
 export { default as UserSettings } from "./UserSettings/UserSettings";
+export { default as SellerDashboard } from "./SellerDashboard/SellerDashboard";
+export { default as BuyerDashboard } from "./BuyerDashboard/BuyerDashboard";

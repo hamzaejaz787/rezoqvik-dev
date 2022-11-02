@@ -1,8 +1,8 @@
-.login {
+.signup {
   padding: 1rem;
 }
 
-.login__container {
+.signup__container {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 4rem 2rem;
@@ -15,7 +15,7 @@
   justify-content: center;
 }
 
-.login__container h3 {
+.signup__container h3 {
   background: linear-gradient(
     120deg,
     var(--gradient-purple),
@@ -28,7 +28,7 @@
   margin-bottom: 0.5em;
 }
 
-.login__container-form {
+.signup__container-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,7 +37,7 @@
   margin: 1em 0;
 }
 
-.login__container-form input {
+.signup__container-form input {
   background-color: #fff;
   padding: 1rem 1.5rem;
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -49,7 +49,7 @@
   transition: all 0.3s ease;
 }
 
-.login__container-form input:focus {
+.signup__container-form input:focus {
   border-image: linear-gradient(
       to right,
       var(--gradient-purple),
@@ -58,20 +58,65 @@
     1;
 }
 
-.login__container-form .btn {
-  width: 100%;
-  padding: 1rem;
-  font-weight: 700;
+.signup__container-form input::file-selector-button {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: rgb(61, 61, 61);
+  padding: 0.25rem 1rem;
+  border-radius: 5px;
   font-size: 1rem;
-  border: none;
-  margin: 0.5em 0;
+  cursor: pointer;
 }
 
-.login__container-forgot {
+.signup__container-form input[type="file"] {
+  color: #7c7c7c;
+  cursor: pointer;
+}
+
+.signup__container-form input[type="file"]:hover {
+  border-image: linear-gradient(
+      to right,
+      var(--gradient-purple),
+      var(--gradient-pink)
+    )
+    1;
+}
+
+.signup__container-form button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(
+    120deg,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  margin: 0.5em 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.signup__container-form button:hover {
+  background: linear-gradient(
+    120deg,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  color: #fff;
+}
+
+.signup__container-login {
+  font-size: 1rem;
+  color: #7c7c7c;
   margin-top: 1em;
 }
 
-.login__container-forgot a {
+.signup__container-login a {
   background: linear-gradient(
     120deg,
     var(--gradient-purple),
@@ -85,7 +130,7 @@
   position: relative;
 }
 
-.login__container-forgot a:hover::after {
+.signup__container-login a:hover::after {
   background: linear-gradient(
     120deg,
     var(--gradient-purple),
@@ -98,32 +143,4 @@
   position: absolute;
   right: 0;
   bottom: 0;
-}
-
-.password_show {
-  position: relative;
-  width: 100%;
-  border: none;
-}
-
-.password_show input {
-  padding-right: 3rem;
-}
-
-.password_show-icon {
-  position: absolute;
-  font-size: 1.5rem;
-  right: 5%;
-  top: calc(50% - 20px);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.password_show-icon svg {
-  fill: rgb(65, 65, 65);
-}
-
-.password_show-icon .icon-active,
-.password_show-icon svg:hover {
-  fill: #131313;
 }

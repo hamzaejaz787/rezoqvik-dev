@@ -55,6 +55,11 @@ const UserSettings = () => {
               <input type="email" placeholder={currentUser.email} />
             </label>
 
+            <label>
+              Password
+              <input type="password" placeholder="Update Password" />
+            </label>
+
             <label className="number-input">
               Phone Number
               <input type="number" placeholder="0321-1234567" />
