@@ -1,8 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
-import { useAuth } from "../../contexts/AuthContext";
-import { storage } from "../../firebase";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./signup-seller.css";
 
@@ -17,8 +14,6 @@ const SignupSeller = () => {
   const [error, setError] = useState("");
   const [file, setFile] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
-  let [percent, setPercent] = useState(0);
-  const { signup } = useAuth();
   const navigate = useNavigate();
 
   const togglePassword = () => {
@@ -27,28 +22,6 @@ const SignupSeller = () => {
 
   function handleChange(e) {
     setFile(e.target.files[0]);
-  }
-
-  function handleImage() {
-    const storageRef = ref(storage, `/files/${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        percent = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-
-        setPercent(percent);
-      },
-      (err) => console.log(err),
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url);
-        });
-      }
-    );
   }
 
   async function handleSubmit(e) {
@@ -61,13 +34,6 @@ const SignupSeller = () => {
     try {
       setError("");
       setLoading(true);
-
-      await signup(
-        emailRef.current.value,
-        passwordRef.current.value,
-        fnameRef.current.value,
-        handleImage()
-      );
 
       navigate("/sellerdashboard");
     } catch {

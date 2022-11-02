@@ -1,11 +1,9 @@
 import { useState, useMemo } from "react";
-import { useAuth } from "../../contexts/AuthContext";
 import "./user-settings.css";
 import Select from "react-select";
 import countryList from "react-select-country-list";
 
 const UserSettings = () => {
-  const { currentUser } = useAuth();
   const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
 
@@ -52,7 +50,7 @@ const UserSettings = () => {
 
             <label>
               Email
-              <input type="email" placeholder={currentUser.email} />
+              <input type="email" placeholder="current@email.com" />
             </label>
 
             <label>

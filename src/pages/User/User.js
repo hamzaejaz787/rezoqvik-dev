@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
 
 //Assets, Components & Containers
 import {
@@ -29,8 +28,6 @@ import {
 import "./user.css";
 
 const User = () => {
-  const { currentUser } = useAuth();
-
   return (
     <>
       <section className="user__container">
@@ -39,11 +36,7 @@ const User = () => {
         <img src={userOne} alt="" className="user__container_user-img" />
 
         <div className="user__container_text-wrapper">
-          <h4 className="user__container-name">
-            {!currentUser.displayName
-              ? "Name not specified"
-              : currentUser.displayName}
-          </h4>
+          <h4 className="user__container-name">User Name</h4>
           <small className="user__container-title">Web Developer</small>
 
           {/* SOCIAL MEDIA ICONS */}
@@ -103,7 +96,7 @@ const User = () => {
             <IoMdMail size={24} style={{ fill: "url(#purple-gradient)" }} />
             <div className="user__container_info-card-text">
               <small>E-mail address</small>
-              <h3>{currentUser.email}</h3>
+              <h3>current@email.com</h3>
             </div>
           </div>
           <div className="user__container_info-card">
