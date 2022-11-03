@@ -1,46 +1,51 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
+import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./signup-buyer.css";
 
 const SignupBuyer = () => {
-  const fnameRef = useRef();
-  const lnameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
-  const picRef = useRef();
+  
+
+  const [data,setData]= useState({
+    proImg:"",
+    firstName:"",
+    lastName: "",
+    email: "",
+    password: "",
+    cPassword:"",
+  
+  });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [file, setFile] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
-  const navigate = useNavigate();
-
   const togglePassword = () => {
-    setPasswordShown(!passwordShown);
+      setPasswordShown(!passwordShown);
+     };
+  const [error,setError]=useState("");
+  const navigate= useNavigate();
+  const handleChange = ({currentTarget:input}) =>{
+    setData({...data, [input.name]: input.value});
   };
-
-  function handleChange(e) {
-    setFile(e.target.files[0]);
-  }
-
-  async function handleSubmit(e) {
+  const handleSubmit= async(e)=>{           
     e.preventDefault();
-
-    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-      return setError("Passwords do not match");
+    if (data.password!== data.cPassword) {
+      alert('Password does not match');
     }
-
-    try {
-      setError("");
-      setLoading(true);
-
-      navigate("/buyerdashboard");
-    } catch {
-      setError(`Failed to create an account. ${error}`);
-    }
-
-    setLoading(false);
+    else{
+      try {
+        const url ="http://localhost:8080/api/buy_users";
+       
+        const {data: res}= await axios.post(url,data);  
+        setError("");
+       setLoading(true); 
+        navigate("/buyerdashboard");          
+        console.log(res.message);
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }      
+   
   }
 
   return (
@@ -59,27 +64,38 @@ const SignupBuyer = () => {
             <input
               type="file"
               accept="image/png, image/jpeg"
-              ref={picRef}
               onChange={handleChange}
+              value={data.proImg}
+              name="proImg"
             />
 
             <input
               type="text"
-              ref={fnameRef}
+              name="firstName"
+              onChange={handleChange}
+              value={data.firstName}
               placeholder="First Name *"
               required
             />
-            <input type="text" ref={lnameRef} placeholder="Last Name" />
+            <input type="text"
+             name="lastName"
+             onChange={handleChange}
+             value={data.lastName} 
+             placeholder="Last Name" />
             <input
               type="email"
-              ref={emailRef}
+              name="email"
+              onChange={handleChange}
+              value={data.email}
               placeholder="Business Email Address *"
               required
             />
             <fieldset className="password_show">
               <input
                 type={passwordShown ? "text" : "password"}
-                ref={passwordRef}
+                name="password"
+                onChange={handleChange}
+                value={data.password}
                 placeholder="Password"
                 required
               />
@@ -94,7 +110,9 @@ const SignupBuyer = () => {
             </fieldset>
             <input
               type="password"
-              ref={confirmPasswordRef}
+              name="cPassword"
+              onChange={handleChange}
+              value={data.cPassword}
               placeholder="Confirm Password *"
               required
             />
