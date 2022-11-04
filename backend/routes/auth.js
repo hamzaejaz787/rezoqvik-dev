@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { User } = require("../models/user");
+const { Seller_User } = require("../models/seller_user");
+const { Buyers_User } = require("../models/buyer_user");
+
 const joi = require("joi");
 const bcrypt = require("bcrypt");
 

@@ -4,7 +4,8 @@ const bodyParser=require("body-parser");
 const app = express();
 const cors= require("cors");
 const connection= require('./db')
-const userRoutes=require("./routes/users");
+const saleUserRoutes=require("./routes/sale_users");
+const buyUserRoutes=require("./routes/buy_users");
 const authRoutes= require("./routes/auth");
 // middleWares
 app.use(express.json());
@@ -18,7 +19,9 @@ connection();
 
 
 //Routes
-app.use("/api/users",userRoutes);
+app.use("/api/sale_users",saleUserRoutes);
+app.use("/api/buy_users",buyUserRoutes);
+
 app.use("/api/auth", authRoutes);
 
 // request handlers
