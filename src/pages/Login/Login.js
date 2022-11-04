@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { useAuth } from "../../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
@@ -8,7 +7,6 @@ const Login = () => {
   const passwordRef = useRef();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -18,7 +16,6 @@ const Login = () => {
       setError("");
       setLoading(true);
 
-      await login(emailRef.current.value, passwordRef.current.value);
       navigate("/user");
       e.target.reset();
     } catch {
@@ -49,7 +46,7 @@ const Login = () => {
             required
           />
 
-          <button disabled={loading} type="submit">
+          <button className="btn" disabled={loading} type="submit">
             Log In
           </button>
         </form>
