@@ -4,18 +4,6 @@ import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-load
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
-// const successLocation = (position) => {
-//   return [position.coords.longitude, position.coords.latitude];
-// };
-
-// const errorLocation = (err) => {
-//   console.log(err);
-// };
-
-// navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
-//   enableHighAccuracy: true,
-// });
-
 const Map = () => {
   const mapContainer = useRef(null);
   const map = useRef(null);

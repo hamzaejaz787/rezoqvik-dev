@@ -20,11 +20,12 @@ import "./App.css";
 function App() {
   const user = localStorage.getItem("token");
 
-  return (    
+  return (
     <>
       <Navbar />
       <Routes>
-      {user && <Route path="/" exact element={<Home/>} />}
+        {/* {user && <Route path="/" element={<Home />} />} */}
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/support" element={<Support />} />
         <Route path="/user" element={<User />} />

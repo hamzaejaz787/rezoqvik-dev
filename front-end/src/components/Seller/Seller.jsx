@@ -5,13 +5,11 @@ import "./seller.css";
 
 const Seller = () => {
   //const [seller, setSeller] = useState("");
-  const [seller, setSeller]= useState({
-    proImg:"",
-    firstName:"",
+  const [seller, setSeller] = useState({
+    proImg: "",
+    firstName: "",
     lastName: "",
     email: "",
-   
-  
   });
   useEffect(() => {
     const fetchdata = async () => {
@@ -22,7 +20,6 @@ const Seller = () => {
   }, []);
   return (
     <>
-     
       <div className="seller__card">
         <img src={seller.proImg} alt="user pic" />
         <h4 className="seller__card_user-name">{seller.firstName}</h4>
@@ -31,7 +28,6 @@ const Seller = () => {
           Hire now
         </Link>
       </div>
-     
     </>
   );
 };
