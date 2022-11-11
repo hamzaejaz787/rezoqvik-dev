@@ -1,5 +1,7 @@
 const express = require("express");
 const { Buyers_User, validate } = require("../models/buyer_user");
+const { Seller_User } = require("../models/seller_user");
+
 const joi = require("joi");
 const bcrypt = require("bcrypt");
 
@@ -11,10 +13,12 @@ router.post("/", async (req, res)=>{
             if (error)
 			return res.status(400).send({ message: error.details[0].message });
             
-            const user =await Buyers_User.findOne({email: req.body.email});
+            let user =await Buyers_User.findOne({email: req.body.email});            
             if (user) 
             return res.status(409).send({message:"User With given email already exits"});
-            
+            let seller =await Seller_User.findOne({email: req.body.email});
+            if (seller) 
+            return res.status(409).send({message:"User With given email already exits"});
             let salt =await bcrypt.genSalt(Number(process.env.SALT));
             const hashPassword = await bcrypt.hash(req.body.password, salt);
             await new Buyers_User({...req.body, password: hashPassword, cPassword: hashPassword}).save();

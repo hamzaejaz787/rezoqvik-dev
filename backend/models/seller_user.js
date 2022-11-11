@@ -7,7 +7,7 @@ const passwordComplexity = require("joi-password-complexity");
 const userSchema = new mongoose.Schema({
     proImg:{type: String, required:false},
     firstName:{type: String, required: true},
-    lastName:{type: String, required: true},
+    lastName:{type: String, required: false},
     email:{type: String, required: true},
     password:{type: String, required: true},
     cPassword:{type: String, required: true},
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         const schema =joi.object({
             proImg: joi.string().label("Upload Profile Pic"),
             firstName: joi.string().required().label("First Name"),
-            lastName: joi.string().required().label("Last Name"),
+            lastName: joi.string().label("Last Name"),
             email: joi.string().required().label("E-Mail"),
             password: joi.string().required().label("Password"),
             cPassword: joi.string().required().label("Conform Password"),
