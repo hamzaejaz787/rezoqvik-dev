@@ -1,53 +1,70 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+          const [data,setData]= useState({
+           
+            email: "",
+            password: "",
+            
+          
+          });
+          const [error,setError]=useState("");
+          const navigate =useNavigate()
+          const handleChange = ({currentTarget:input}) =>{
+            setData({...data, [input.name]: input.value});
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+          };
+          const handleSubmit= async(e)=>{
+            e.preventDefault();
+            try {
+              const url ="http://localhost:8080/api/auth";
+              const {data: res}= await axios.post(url,data);             
+              localStorage.setItem("token", res.data);
+              localStorage.setItem("b_token", res.data);
+              navigate('/buyerdashboard')
+              navigate('/sellerdashboard')
 
-    try {
-      setError("");
-      setLoading(true);
-
-      navigate("/user");
-      e.target.reset();
-    } catch {
-      setError("Failed to log in");
-      console.log("Login unsuccessful");
-    }
-
-    setLoading(false);
-  }
+			         
+            } catch (error) {
+              if (
+                error.response &&
+                error.response.status>=400 &&
+                  error.response.status<=500) {
+                setError(error.response.data.message);
+              }
+            }
+          }
 
   return (
     <div className="login">
       <div className="login__container">
         <h3>Welcome Back</h3>
-        {error && alert(error)}
+        {/* {error && alert(error)} */}
         <form className="login__container-form" onSubmit={handleSubmit}>
           <input
             type="email"
-            ref={emailRef}
+            name="email"
+            onChange={handleChange}
+            value={data.email}
             placeholder="Email Address"
             required
           />
 
           <input
             type="password"
-            ref={passwordRef}
+            name="password"
+            onChange={handleChange}
+            value={data.password}
             placeholder="Password"
             required
           />
+              {error && <div>{error}</div>}
 
-          <button className="btn" disabled={loading} type="submit">
-            Log In
+          <button className="btn" type="submit">
+            Login
           </button>
         </form>
 
@@ -58,5 +75,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

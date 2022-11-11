@@ -5,45 +5,7 @@ import axios from "axios";
 import "./signup-seller.css";
 
 const SignupSeller = () => {
-  // const fnameRef = useRef();
-  // const lnameRef = useRef();
-  // const emailRef = useRef();
-  // const passwordRef = useRef();
-  // const confirmPasswordRef = useRef();
-  // const picRef = useRef();
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState("");
-  // const [file, setFile] = useState("");
-  // const [passwordShown, setPasswordShown] = useState(false);
-  // const navigate = useNavigate();
-
-  // const togglePassword = () => {
-  //   setPasswordShown(!passwordShown);
-  // };
-
-  // function handleChange(e) {
-  //   setFile(e.target.files[0]);
-  // }
-
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-  //     return setError("Passwords do not match");
-  //   }
-
-  //   try {
-  //     setError("");
-  //     setLoading(true);
-
-  //     navigate("/sellerdashboard");
-  //   } catch {
-  //     setError(`Failed to create an account. ${error}`);
-  //   }
-
-  //   setLoading(false);
-  // }
-
+ 
   // code for user registration
   const [data,setData]= useState({
     proImg:"",

@@ -5,7 +5,44 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./signup-buyer.css";
 
 const SignupBuyer = () => {
-  
+  // const fnameRef = useRef();
+  // const lnameRef = useRef();
+  // const emailRef = useRef();
+  // const passwordRef = useRef();
+  // const confirmPasswordRef = useRef();
+  // const picRef = useRef();
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState("");
+  // const [file, setFile] = useState("");
+  // const [passwordShown, setPasswordShown] = useState(false);
+  // const navigate = useNavigate();
+
+  // const togglePassword = () => {
+  //   setPasswordShown(!passwordShown);
+  // };
+
+  // function handleChange(e) {
+  //   setFile(e.target.files[0]);
+  // }
+
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+
+  //   if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+  //     return setError("Passwords do not match");
+  //   }
+
+  //   try {
+  //     setError("");
+  //     setLoading(true);
+
+  //     navigate("/buyerdashboard");
+  //   } catch {
+  //     setError(`Failed to create an account. ${error}`);
+  //   }
+
+  //   setLoading(false);
+  // }
 
   const [data,setData]= useState({
     proImg:"",
