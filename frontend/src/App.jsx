@@ -18,7 +18,7 @@ import {
 import "./App.css";
 
 function App() {
-  const user = localStorage.getItem("token");
+  //const user = localStorage.getItem("token");
 
   return (
     <>
