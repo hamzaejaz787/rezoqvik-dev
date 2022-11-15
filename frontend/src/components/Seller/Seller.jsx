@@ -13,7 +13,7 @@ const Seller = () => {
   });
   useEffect(() => {
     const fetchdata = async () => {
-      const data = await axios.get("/api/seller_user/get");
+      const data = await axios.get("/api/seller_user");
       setSeller(data);
     };
     fetchdata();
@@ -21,9 +21,13 @@ const Seller = () => {
   return (
     <>
       <div className="seller__card">
-        <img src={seller.proImg} alt="user pic" />
-        <h4 className="seller__card_user-name">{seller.firstName}</h4>
-        <small className="seller__card_user-title">{seller.email}</small>
+        <img src={seller.proImg} alt="user image" />
+        <h4 className="seller__card_user-name">
+          {seller.firstName || "FirstName"}
+        </h4>
+        <small className="seller__card_user-title">
+          {seller.email || "email@example.com"}
+        </small>
         <Link to="/user" className="seller__card_user-link btn">
           Hire now
         </Link>

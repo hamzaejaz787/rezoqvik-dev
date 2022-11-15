@@ -18,11 +18,6 @@ const sellersData = [
     sellerName: "Rachel Weisz",
     sellerTitle: "Web Developer",
   },
-  {
-    sellerImage: userFour,
-    sellerName: "Rachel Weisz",
-    sellerTitle: "Web Developer",
-  },
 ];
 
 const Sellers = () => {

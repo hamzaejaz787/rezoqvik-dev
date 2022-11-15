@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from "react-router-dom";
 
 //Assets, Components & Containers
@@ -28,6 +27,7 @@ import {
 import "./user.css";
 
 const User = () => {
+  //const facebookURL = "https://www.facebook.com/";
   return (
     <>
       <section className="user__container">
@@ -41,21 +41,21 @@ const User = () => {
 
           {/* SOCIAL MEDIA ICONS */}
           <div className="user__container_icons">
-            <Link>
+            <a href={"https://www.facebook.com/"} target="_blank">
               <FaFacebook size={24} />
-            </Link>
-            <Link>
+            </a>
+            <a href={"https://instagram.com"} target="_blank">
               <FaInstagram size={24} />
-            </Link>
-            <Link>
+            </a>
+            <a href={"https://www.linkedin.com/"} target="_blank">
               <FaLinkedinIn size={24} />
-            </Link>
-            <Link>
+            </a>
+            <a href={"https://web.whatsapp.com/"} target="_blank">
               <FaWhatsapp size={24} />
-            </Link>
-            <Link>
+            </a>
+            <a href={"https://twitter.com/"} target="_blank">
               <FaTwitter size={24} />
-            </Link>
+            </a>
           </div>
         </div>
 
