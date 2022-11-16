@@ -5,48 +5,43 @@ import axios from "axios";
 import "./signup-seller.css";
 
 const SignupSeller = () => {
- 
   // code for user registration
-  const [data,setData]= useState({
-    proImg:"",
-    firstName:"",
+  const [data, setData] = useState({
+    proImg: "",
+    firstName: "",
     lastName: "",
     email: "",
     password: "",
-    cPassword:"",
-  
+    cPassword: "",
   });
   const [loading, setLoading] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
-      setPasswordShown(!passwordShown);
-     };
-  const [error,setError]=useState("");
-  const navigate= useNavigate();
-  const handleChange = ({currentTarget:input}) =>{
-    setData({...data, [input.name]: input.value});
+    setPasswordShown(!passwordShown);
   };
-  const handleSubmit= async(e)=>{           
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleChange = ({ currentTarget: input }) => {
+    setData({ ...data, [input.name]: input.value });
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (data.password!== data.cPassword) {
-      alert('Password does not match');
-    }
-    else{
+    if (data.password !== data.cPassword) {
+      alert("Password does not match");
+    } else {
       try {
-        const url ="http://localhost:8080/api/sale_users";
-       
-        const {data: res}= await axios.post(url,data);  
+        const url = "http://localhost:8080/api/sale_users";
+
+        const { data: res } = await axios.post(url, data);
         setError("");
-       setLoading(true); 
-        navigate("/sellerdashboard");          
+        setLoading(true);
+        navigate("/sellerdashboard");
         console.log(res.message);
-        
       } catch (error) {
         console.log(error);
       }
-    }      
-   
-  }
+    }
+  };
   return (
     <div className="signup">
       <div className="signup__container">
@@ -75,11 +70,13 @@ const SignupSeller = () => {
             placeholder="First Name *"
             required
           />
-          <input type="text"
-           name="lastName"
-           onChange={handleChange}
-           value={data.lastName} 
-           placeholder="Last Name" />
+          <input
+            type="text"
+            name="lastName"
+            onChange={handleChange}
+            value={data.lastName}
+            placeholder="Last Name"
+          />
           <input
             type="email"
             name="email"

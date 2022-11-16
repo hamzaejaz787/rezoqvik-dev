@@ -1,89 +1,46 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./signup-buyer.css";
 
 const SignupBuyer = () => {
-  // const fnameRef = useRef();
-  // const lnameRef = useRef();
-  // const emailRef = useRef();
-  // const passwordRef = useRef();
-  // const confirmPasswordRef = useRef();
-  // const picRef = useRef();
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState("");
-  // const [file, setFile] = useState("");
-  // const [passwordShown, setPasswordShown] = useState(false);
-  // const navigate = useNavigate();
-
-  // const togglePassword = () => {
-  //   setPasswordShown(!passwordShown);
-  // };
-
-  // function handleChange(e) {
-  //   setFile(e.target.files[0]);
-  // }
-
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-  //     return setError("Passwords do not match");
-  //   }
-
-  //   try {
-  //     setError("");
-  //     setLoading(true);
-
-  //     navigate("/buyerdashboard");
-  //   } catch {
-  //     setError(`Failed to create an account. ${error}`);
-  //   }
-
-  //   setLoading(false);
-  // }
-
-  const [data,setData]= useState({
-    proImg:"",
-    firstName:"",
+  const [data, setData] = useState({
+    proImg: "",
+    firstName: "",
     lastName: "",
     email: "",
     password: "",
-    cPassword:"",
-  
+    cPassword: "",
   });
   const [loading, setLoading] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
-      setPasswordShown(!passwordShown);
-     };
-  const [error,setError]=useState("");
-  const navigate= useNavigate();
-  const handleChange = ({currentTarget:input}) =>{
-    setData({...data, [input.name]: input.value});
+    setPasswordShown(!passwordShown);
   };
-  const handleSubmit= async(e)=>{           
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleChange = ({ currentTarget: input }) => {
+    setData({ ...data, [input.name]: input.value });
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (data.password!== data.cPassword) {
-      alert('Password does not match');
-    }
-    else{
+    if (data.password !== data.cPassword) {
+      alert("Password does not match");
+    } else {
       try {
-        const url ="http://localhost:8080/api/buy_users";
-       
-        const {data: res}= await axios.post(url,data);  
+        const url = "http://localhost:8080/api/buy_users";
+
+        const { data: res } = await axios.post(url, data);
         setError("");
-       setLoading(true); 
-        navigate("/buyerdashboard");          
+        setLoading(true);
+        navigate("/buyerdashboard");
         console.log(res.message);
-        
       } catch (error) {
         console.log(error);
       }
-    }      
-   
-  }
+    }
+  };
 
   return (
     <>
@@ -96,6 +53,7 @@ const SignupBuyer = () => {
           <form
             className="signup__container-form"
             method="POST"
+            encType="multipart/form-data"
             onSubmit={handleSubmit}
           >
             <input
@@ -114,11 +72,13 @@ const SignupBuyer = () => {
               placeholder="First Name *"
               required
             />
-            <input type="text"
-             name="lastName"
-             onChange={handleChange}
-             value={data.lastName} 
-             placeholder="Last Name" />
+            <input
+              type="text"
+              name="lastName"
+              onChange={handleChange}
+              value={data.lastName}
+              placeholder="Last Name"
+            />
             <input
               type="email"
               name="email"

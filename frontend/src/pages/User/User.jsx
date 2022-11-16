@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+//import { Link } from "react-router-dom";
 //Assets, Components & Containers
 import {
   programming,
@@ -27,7 +26,6 @@ import {
 import "./user.css";
 
 const User = () => {
-  //const facebookURL = "https://www.facebook.com/";
   return (
     <>
       <section className="user__container">
@@ -41,19 +39,31 @@ const User = () => {
 
           {/* SOCIAL MEDIA ICONS */}
           <div className="user__container_icons">
-            <a href={"https://www.facebook.com/"} target="_blank">
+            <a
+              href={"https://www.facebook.com/"}
+              target="_blank"
+              rel="noreferrer"
+            >
               <FaFacebook size={24} />
             </a>
-            <a href={"https://instagram.com"} target="_blank">
+            <a href={"https://instagram.com"} target="_blank" rel="noreferrer">
               <FaInstagram size={24} />
             </a>
-            <a href={"https://www.linkedin.com/"} target="_blank">
+            <a
+              href={"https://www.linkedin.com/"}
+              target="_blank"
+              rel="noreferrer"
+            >
               <FaLinkedinIn size={24} />
             </a>
-            <a href={"https://web.whatsapp.com/"} target="_blank">
+            <a
+              href={"https://web.whatsapp.com/"}
+              target="_blank"
+              rel="noreferrer"
+            >
               <FaWhatsapp size={24} />
             </a>
-            <a href={"https://twitter.com/"} target="_blank">
+            <a href={"https://twitter.com/"} target="_blank" rel="noreferrer">
               <FaTwitter size={24} />
             </a>
           </div>

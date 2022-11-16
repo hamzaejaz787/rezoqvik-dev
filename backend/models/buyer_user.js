@@ -23,10 +23,21 @@ const Buyers_User = mongoose.model("buyers", userSchema);
 
 const validate = (data) => {
   const schema = joi.object({
-    proImg: joi.string().label("Upload Profile Pic"),
+    proImg: joi
+      .string()
+      .empty("")
+      .default("default value")
+      .label("Upload Profile Pic"),
     firstName: joi.string().label("First Name"),
-    lastName: joi.string().label("Last Name"),
-    email: joi.string().label("E-Mail"),
+    lastName: joi
+      .string()
+      .empty("")
+      .default("default value")
+      .label("Last Name"),
+    email: joi
+      .string()
+      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "co"] } })
+      .label("E-Mail"),
     password: joi.string().label("Password"),
     cPassword: joi.string().label("Confirm Password"),
   });

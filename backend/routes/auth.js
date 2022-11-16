@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     }
 
     const user = await Seller_User.findOne({ email: req.body.email });
-    // const buyer = await Buyers_User.findOne({ email: req.body.email });
+    const buyer = await Buyers_User.findOne({ email: req.body.email });
 
     if (!user) {
       return res.status(401).send({ message: "Invalid Email or Password" });
@@ -22,7 +22,11 @@ router.post("/", async (req, res) => {
       req.body.password,
       user.password
     );
-    //const valid_Password = await bcrypt.compare(req.body.password, buyer.password);
+
+    const valid_Password = await bcrypt.compare(
+      req.body.password,
+      buyer.password
+    );
 
     if (!validPassword) {
       return res.status(401).send({ message: "Invalid Email or Password" });
@@ -30,8 +34,8 @@ router.post("/", async (req, res) => {
     const token = user.generateAuthToken();
     res.status(200).send({ data: token, message: "logged In Successfully" });
 
-    // const b_token = buyer.generateAuthToken();
-    // res.status(200).send({ data: b_token, message: "logged In Successfully" });
+    const b_token = buyer.generateAuthToken();
+    res.status(200).send({ data: b_token, message: "logged In Successfully" });
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });
   }

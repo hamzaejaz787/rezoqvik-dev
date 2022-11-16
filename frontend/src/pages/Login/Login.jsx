@@ -4,39 +4,34 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 
 const Login = () => {
-          const [data,setData]= useState({
-           
-            email: "",
-            password: "",
-            
-          
-          });
-          const [error,setError]=useState("");
-          const navigate =useNavigate()
-          const handleChange = ({currentTarget:input}) =>{
-            setData({...data, [input.name]: input.value});
-
-          };
-          const handleSubmit= async(e)=>{
-            e.preventDefault();
-            try {
-              const url ="http://localhost:8080/api/auth";
-              const {data: res}= await axios.post(url,data);             
-              localStorage.setItem("token", res.data);
-              localStorage.setItem("b_token", res.data);
-              navigate('/buyerdashboard')
-              navigate('/sellerdashboard')
-
-			         
-            } catch (error) {
-              if (
-                error.response &&
-                error.response.status>=400 &&
-                  error.response.status<=500) {
-                setError(error.response.data.message);
-              }
-            }
-          }
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleChange = ({ currentTarget: input }) => {
+    setData({ ...data, [input.name]: input.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = "http://localhost:8080/api/auth";
+      const { data: res } = await axios.post(url, data);
+      localStorage.setItem("token", res.data);
+      localStorage.setItem("b_token", res.data);
+      navigate("/buyerdashboard");
+      navigate("/sellerdashboard");
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+      }
+    }
+  };
 
   return (
     <div className="login">
@@ -61,7 +56,7 @@ const Login = () => {
             placeholder="Password"
             required
           />
-              {error && <div>{error}</div>}
+          {error && <div>{error}</div>}
 
           <button className="btn" type="submit">
             Login

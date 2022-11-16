@@ -12,17 +12,19 @@ router.post("/", async (req, res) => {
     if (error)
       if (error)
         return res.status(400).send({ message: error.details[0].message });
-
+    //Buyer email check
     let user = await Buyers_User.findOne({ email: req.body.email });
     if (user)
       return res
         .status(409)
         .send({ message: "User With given email already exits" });
+    //Seller email check
     let seller = await Seller_User.findOne({ email: req.body.email });
     if (seller)
       return res
         .status(409)
         .send({ message: "User With given email already exits" });
+
     let salt = await bcrypt.genSalt(Number(process.env.SALT));
     const hashPassword = await bcrypt.hash(req.body.password, salt);
     await new Buyers_User({
