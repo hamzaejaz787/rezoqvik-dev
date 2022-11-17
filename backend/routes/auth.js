@@ -18,19 +18,16 @@ router.post("/", async (req, res) => {
     if (!user) {
       return res.status(401).send({ message: "Invalid Email or Password" });
     }
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-
-    const valid_Password = await bcrypt.compare(
-      req.body.password,
-      buyer.password
-    );
-
+    const validPassword = bcrypt.compare(req.body.password, user.password);
     if (!validPassword) {
       return res.status(401).send({ message: "Invalid Email or Password" });
     }
+
+    const valid_Password = bcrypt.compare(req.body.password, buyer.password);
+    if (!valid_Password) {
+      return res.status(401).send({ message: "Invalid Email or Password" });
+    }
+
     const token = user.generateAuthToken();
     res.status(200).send({ data: token, message: "logged In Successfully" });
 
@@ -43,8 +40,12 @@ router.post("/", async (req, res) => {
 
 const validate = (data) => {
   const schema = joi.object({
-    email: joi.string().email().required().label("E-Mail"),
-    password: joi.string().required().label("Password"),
+    email: joi
+      .string()
+      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "co"] } })
+      .label("E-Mail")
+      .required(),
+    password: joi.string().label("Password").required(),
   });
   return schema.validate(data);
 };
