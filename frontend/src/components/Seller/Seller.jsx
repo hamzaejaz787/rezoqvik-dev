@@ -13,7 +13,8 @@ const Seller = () => {
   });
   useEffect(() => {
     const fetchdata = async () => {
-      const data = await axios.get("/api/seller_user/get");
+      const response = await axios.get("http://localhost:8080/api/sale_userss");
+      const data = await response.json()
       setSeller(data);
     };
     fetchdata();
