@@ -12,17 +12,14 @@ router.post("/", async (req, res) => {
       if (error)
         return res.status(400).send({ message: error.details[0].message });
 
-    let user = await Seller_User.findOne({ email: req.body.email });
+    const user = await Seller_User.findOne({ email: req.body.email });
+    const buyer = await Buyers_User.findOne({ email: req.body.email });
 
-    if (user)
+    if (user || buyer)
       return res
         .status(409)
         .send({ message: "User With given email already exits" });
-    let buyer = await Buyers_User.findOne({ email: req.body.email });
-    if (buyer)
-      return res
-        .status(409)
-        .send({ message: "User With given email already exits" });
+
     let salt = await bcrypt.genSalt(Number(process.env.SALT));
     const hashPassword = await bcrypt.hash(req.body.password, salt);
     await new Seller_User({
@@ -42,8 +39,9 @@ app.get("/api/seller_user", (req, res) => {
       res.status(500).send(err);
     } else {
       res.status(200).send(data);
+      console.log(data);
     }
   });
-  res.send("Welcome to the first Node.js Tutorial! - Clue Mediator");
+  res.send("Sale users backend");
 });
 module.exports = router;
