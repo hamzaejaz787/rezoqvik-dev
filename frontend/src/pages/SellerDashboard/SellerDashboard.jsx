@@ -1,12 +1,34 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import {
+  programming,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedinIn,
+  FaWhatsapp,
+  FaTwitter,
+  FaPhoneAlt,
+  FaBirthdayCake,
+  IoMdMail,
+  HiLocationMarker,
+  AiFillIdcard,
+  RiParentLine,
+  userOne,
+  Products,
+  Services,
+  Testimonials,
+  Gallery,
+  Map,
+  Appointment,
+  DashboardForm,
+} from "./import";
 import "./seller-dashboard.css";
 
 const SellerDashboard = () => {
   return (
     <>
-      <div className="seller__dashboard">
-        <h1>Dashboard</h1>
-      </div>
+      <section className="seller__dashboard">
+        <DashboardForm />
+      </section>
     </>
   );
 };

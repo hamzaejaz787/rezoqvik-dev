@@ -7,7 +7,6 @@ import {
   Home,
   AboutUs,
   Support,
-  User,
   Signup,
   Login,
   ForgotPassword,
@@ -18,17 +17,16 @@ import {
 import "./App.css";
 
 function App() {
-  //const user = localStorage.getItem("token");
+  // const user = localStorage.getItem("token");
+  // console.log(user);
 
   return (
     <>
       <Navbar />
       <Routes>
-        {/* {user && <Route path="/" element={<Home />} />} */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/support" element={<Support />} />
-        <Route path="/user" element={<User />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signupseller" element={<SignupSeller />} />
         <Route path="/signupbuyer" element={<SignupBuyer />} />

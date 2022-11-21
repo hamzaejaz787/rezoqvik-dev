@@ -3,7 +3,7 @@
 }
 
 .user__gallery-heading {
-  border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px !important;
   border-bottom-left-radius: 50px;
   position: absolute;
   text-align: right;

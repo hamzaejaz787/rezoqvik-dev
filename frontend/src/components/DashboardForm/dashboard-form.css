@@ -1,0 +1,101 @@
+.form-title {
+  background: linear-gradient(
+    120deg,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 1.5rem;
+  margin: 0.5em 0;
+}
+
+.dashboard__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 5rem;
+}
+
+.dashboard__form_container {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 4rem 2rem;
+  margin: 1em 0;
+  border-radius: 10px;
+  max-width: 650px;
+  min-height: 50vh;
+}
+
+.dashboard__form_container-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 1em;
+  padding: 1rem 0;
+}
+
+.form-label {
+  font-size: 1rem;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  min-width: 250px;
+  margin-top: 0.35em;
+  background-color: #fff;
+  padding: 1rem 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.form-input:focus {
+  border-image: linear-gradient(
+      to right,
+      var(--gradient-purple),
+      var(--gradient-pink)
+    )
+    1;
+  cursor: text;
+}
+
+.form-date {
+  text-transform: uppercase;
+}
+
+.css-1okebmr-indicatorSeparator {
+  display: none;
+}
+
+.css-1s2u09g-control,
+.css-1pahdxg-control {
+  font-size: 1rem;
+  color: #757575;
+  width: 250px;
+  max-width: 100%;
+  margin-top: 0.25em;
+  padding: 0 1rem;
+  height: 55px;
+  cursor: pointer;
+}
+
+.css-1pahdxg-control {
+  border-image: linear-gradient(
+      to right,
+      var(--gradient-purple),
+      var(--gradient-pink)
+    )
+    1;
+  box-shadow: none !important;
+}

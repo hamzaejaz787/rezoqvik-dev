@@ -19,7 +19,7 @@ import Products from "../../containers/Products/Products";
 import Services from "../../containers/Services/Services";
 import Testimonials from "../../containers/Testimonials/Testimonials";
 import Gallery from "../../containers/Gallery/Gallery";
-
+import DashboardForm from "../../components/DashboardForm/DashboardForm";
 import Map from "../../components/Map/Map";
 import Appointment from "../../components/Appointment/Appointment";
 
@@ -45,4 +45,5 @@ export {
   Gallery,
   Map,
   Appointment,
+  DashboardForm,
 };
