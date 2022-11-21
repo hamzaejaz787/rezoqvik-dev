@@ -18,13 +18,13 @@ import {
 import "./App.css";
 
 function App() {
-  const user = localStorage.getItem("token");
-  console.log(user);
+  //const user = localStorage.getItem("token");
 
   return (
     <>
       <Navbar />
       <Routes>
+        {/* {user && <Route path="/" element={<Home />} />} */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/support" element={<Support />} />

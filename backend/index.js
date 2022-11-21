@@ -35,8 +35,10 @@ app.get("/api/sale_users", (req, res) => {
     } else {
       res.status(200).send(data);
     }
+    return res.json(data)
   });
-  res.send("Rezoqvik backend");
+
+  //res.send("Rezoqvik backend");
 });
 
 const port = process.env.PORT || 8080;

@@ -19,7 +19,9 @@ const Login = () => {
       const url = "http://localhost:8080/api/auth";
       const { data: res } = await axios.post(url, data);
       localStorage.setItem("token", res.data);
-      navigate("/buyerdashboard");
+      // localStorage.setItem("b_token", res.data);
+      // navigate("/buyerdashboard");
+      navigate("/sellerdashboard");
     } catch (error) {
       if (
         error.response &&
