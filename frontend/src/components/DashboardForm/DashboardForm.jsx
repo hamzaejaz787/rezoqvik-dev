@@ -1,8 +1,15 @@
 import { useState } from "react";
 import Select from "react-select";
+import DashboardCard from "./DashboardCard/DashboardCard";
 import "./dashboard-form.css";
 
-const DashboardForm = () => {
+const DashboardForm = ({
+  userBackground,
+  userImage,
+  userName,
+  userTitle,
+  userLocation,
+}) => {
   const [value, setValue] = useState("");
   const options = [
     { value: "male", label: "Male" },
@@ -36,7 +43,7 @@ const DashboardForm = () => {
               <input
                 type="text"
                 className="form-input"
-                placeholder="Enter your first name"
+                placeholder="First name"
               />
             </label>
 
@@ -45,7 +52,25 @@ const DashboardForm = () => {
               <input
                 type="text"
                 className="form-input"
-                placeholder="Enter your last name"
+                placeholder="Last name"
+              />
+            </label>
+
+            <label className="form-label">
+              Father Name
+              <input
+                type="text"
+                className="form-input"
+                placeholder="Father name"
+              />
+            </label>
+
+            <label className="form-label">
+              CNIC Number
+              <input
+                type="number"
+                className="form-input"
+                placeholder="37405-12345678-9"
               />
             </label>
 
@@ -75,7 +100,7 @@ const DashboardForm = () => {
             </label>
 
             <label className="form-label">
-              Phone
+              Cell Number
               <input
                 type="number"
                 className="form-input"
@@ -83,10 +108,8 @@ const DashboardForm = () => {
               />
             </label>
           </form>
-        </div>
 
-        <div className="dashboard__form_container">
-          <h3 className="form-title">Address</h3>
+          <h3 className="form-title address-title">Address</h3>
           <form className="dashboard__form_container-form">
             <label className="form-label" id="address">
               Address
@@ -114,9 +137,20 @@ const DashboardForm = () => {
               <input type="number" className="form-input" placeholder="ZIP" />
             </label>
           </form>
+
+          <button className="form-btn btn">Save All</button>
         </div>
 
-        <button className="form-btn btn">Save All</button>
+        <div className="dashboard__aside">
+          <DashboardCard
+            userBackground={userBackground}
+            userImage={userImage}
+            userName={userName}
+            userTitle={userTitle}
+            userLocation={userLocation}
+          />
+          <div className="dashboard__aside_display"></div>
+        </div>
       </section>
     </>
   );

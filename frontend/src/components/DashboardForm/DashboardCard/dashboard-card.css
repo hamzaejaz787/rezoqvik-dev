@@ -1,0 +1,118 @@
+/* Dashboard Card */
+.dashboard__aside {
+  width: clamp(200px, 100%, 350px);
+}
+
+.dashboard__aside_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-background {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.card-image {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  position: absolute;
+  top: calc(30% + 7px);
+}
+
+.card-wrapper {
+  width: 100%;
+  padding: 4rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-username {
+  font-size: 1.2rem;
+  color: rgb(24, 24, 24);
+  font-weight: 500;
+}
+
+.card-title {
+  font-size: 0.95rem;
+  line-height: 0.75rem;
+  font-weight: 300;
+  padding-top: 0.5rem;
+}
+
+.card-location {
+  font-size: 1rem;
+  color: #757575;
+  padding: 0.25rem 0;
+}
+
+.dashboard__aside_card-btns {
+  max-width: 275px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 0.75em;
+}
+
+.card-btn {
+  background: linear-gradient(
+    to right,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card-btn:hover {
+  box-shadow: var(--gradient-pink) 0px 0px 0px 2px;
+}
+
+.connect-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.connect-btn-icon {
+  font-size: 1rem;
+  margin: auto 0.2rem auto 0;
+  height: 16px;
+}
+
+/* MEDIA QUERRIES */
+@media screen and (max-width: 1300px) {
+  .dashboard__aside {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .form-btn {
+    max-width: 100%;
+  }
+
+  .card-wrapper {
+    padding: 4rem 1rem 3rem;
+  }
+
+  .card-btn {
+    font-size: 0.75rem;
+  }
+}
