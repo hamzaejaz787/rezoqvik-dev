@@ -1,0 +1,78 @@
+.dashboard__upload {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin: 2em 0;
+  padding: 1.5rem 1.2rem;
+}
+
+.dashboard__upload .title {
+  font-size: 1.25rem;
+  text-align: left;
+  margin: 0;
+  font-weight: 700;
+}
+
+.upload__container {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.upload-thumbnail {
+  border-radius: 5px;
+  height: 60px;
+  width: 60px;
+}
+
+.upload__container-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 1em;
+  position: relative;
+}
+
+.upload-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.35em;
+}
+
+.upload-icon svg {
+  font-size: 1.5rem;
+  fill: #4a5073;
+  cursor: pointer;
+}
+
+.upload__container-items input[type="file"] {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  max-width: 250px;
+  padding-bottom: 1.5rem;
+  cursor: pointer;
+}
+
+.upload__container-items input::file-selector-button {
+  cursor: pointer;
+}
+
+.upload__wrapper h6 {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 400px) {
+  .upload__container {
+    flex-direction: column;
+  }
+
+  .upload__container-items {
+    margin: 1em 0 0 0;
+  }
+
+  .upload__container-items input[type="file"] {
+    max-width: 220px;
+  }
+}
