@@ -1,9 +1,6 @@
 /* Dashboard Card */
 .dashboard__aside {
-
-  width: clamp(200px, 100%, 350px);
-
-
+  width: clamp(200px, 100%, 550px);
 }
 
 .dashboard__aside_card {
@@ -100,7 +97,6 @@
 }
 
 /* MEDIA QUERRIES */
-
 @media screen and (min-width: 1500px) {
   .dashboard__aside {
     width: clamp(200px, 100%, 800px);
