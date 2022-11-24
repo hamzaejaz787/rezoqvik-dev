@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     }
 
     const user = await Seller_User.findOne({ email: req.body.email });
-   // const buyer = await Buyers_User.findOne({ email: req.body.email });
+    // const buyer = await Buyers_User.findOne({ email: req.body.email });
 
     if (!user) {
       return res.status(401).send({ message: "Invalid Email or Password!" });
@@ -36,17 +36,19 @@ router.post("/", async (req, res) => {
 
     // const b_token = buyer.generateAuthToken();
     // res.status(200).send({ data: b_token, message: "logged In Successfully" });
-  } 
-  
-  catch (error) {
+  } catch (error) {
     res.status(500).send({ message: "Internal server error" });
   }
 });
 
 const validate = (data) => {
   const schema = joi.object({
-    email: joi.string().email().required().label("E-Mail"),
-    password: joi.string().required().label("Password"),
+    email: joi
+      .string()
+      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "co"] } })
+      .label("E-Mail")
+      .required(),
+    password: joi.string().label("Password").required(),
   });
   return schema.validate(data);
 };
