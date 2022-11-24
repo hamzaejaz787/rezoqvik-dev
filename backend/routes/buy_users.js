@@ -4,7 +4,7 @@ const { Seller_User } = require("../models/seller_user");
 
 const joi = require("joi");
 const bcrypt = require("bcrypt");
-
+const app= express();
 const router = express.Router();
 router.post("/", async (req, res) => {
   try {
@@ -36,5 +36,16 @@ router.post("/", async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: error });
   }
+});
+
+app.get("/api/buyer_user", (req, res) => {
+  Buyers_User.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+  res.send("Welcome to the first Node.js Tutorial! - Clue Mediator");
 });
 module.exports = router;

@@ -4,21 +4,22 @@ import axios from "axios";
 import "./seller.css";
 
 const Seller = () => {
-  //const [seller, setSeller] = useState("");
   const [seller, setSeller] = useState({
     proImg: "",
     firstName: "",
     lastName: "",
     email: "",
   });
+
   useEffect(() => {
     const fetchdata = async () => {
-      const response = await axios.get("http://localhost:8080/api/sale_userss");
-      const data = await response.json()
+      const response = await axios.get("http://localhost:8080/api/sale_users");
+      const data = await response.json();
       setSeller(data);
     };
     fetchdata();
   }, []);
+
   return (
     <>
       <div className="seller__card">
