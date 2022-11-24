@@ -28,7 +28,7 @@ const validate = (data) => {
       .empty("")
       .default("default value")
       .label("Upload Profile Pic"),
-    firstName: joi.string().label("First Name").required(),
+    firstName: joi.string().label("First Name"),
     lastName: joi
       .string()
       .empty("")
@@ -37,10 +37,9 @@ const validate = (data) => {
     email: joi
       .string()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "co"] } })
-      .label("E-Mail")
-      .required(),
-    password: joi.string().label("Password").required(),
-    cPassword: joi.string().label("Confirm Password").required(),
+      .label("E-Mail"),
+    password: joi.string().label("Password"),
+    cPassword: joi.string().label("Confirm Password"),
   });
   return schema.validate(data);
 };

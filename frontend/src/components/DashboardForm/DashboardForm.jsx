@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Select from "react-select";
 import DashboardCard from "./DashboardCard/DashboardCard";
+
 import DashboardUpload from "./DashboardUpload/DashboardUpload";
+
 import "./dashboard-form.css";
 
 const DashboardForm = ({
@@ -150,6 +152,7 @@ const DashboardForm = ({
             userTitle={userTitle}
             userLocation={userLocation}
           />
+
           <div className="dashboard__aside_display">
             <DashboardUpload />
           </div>

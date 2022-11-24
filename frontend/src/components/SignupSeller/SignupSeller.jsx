@@ -53,13 +53,15 @@ const SignupSeller = () => {
           className="signup__container-form"
           method="POST"
           onSubmit={handleSubmit}
+          encType="multipart/form-data"
         >
           <input
             type="file"
+            name="proImg"
             accept="image/png, image/jpeg"
             onChange={handleChange}
             value={data.proImg}
-            name="proImg"
+            
           />
 
           <input

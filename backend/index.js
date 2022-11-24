@@ -3,8 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const cors = require("cors");
-const multer = require("multer");
-const upload = multer({ dest: "./uploads/" });
 const connection = require("./db");
 const saleUserRoutes = require("./routes/sale_users");
 const buyUserRoutes = require("./routes/buy_users");
@@ -23,8 +21,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connection();
 
 //Routes
-app.use("/api/sale_users", upload.single("image"), saleUserRoutes);
-app.use("/api/buy_users", upload.single("image"), buyUserRoutes);
+app.use("/api/sale_users",  saleUserRoutes);
+app.use("/api/buy_users",  buyUserRoutes);
 app.use("/api/auth", authRoutes);
 
 // request handlers
@@ -33,8 +31,13 @@ app.get("/api/sale_users", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).send(data);
+      //res.status(200).send(data);
+      return res.json(data)
     }
+  });
+
+ // res.send("Rezoqvik backend");
+
 
     //Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
     return res.json(data);

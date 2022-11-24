@@ -1,11 +1,37 @@
 const express = require("express");
+const bodyParser=require("body-parser")
+const multer  = require('multer')
 const { Seller_User, validate } = require("../models/seller_user");
 const { Buyers_User } = require("../models/buyer_user");
 const app = express();
 const bcrypt = require("bcrypt");
+const path= require("path")
 
 const router = express.Router();
-router.post("/", async (req, res) => {
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended:true}));
+
+router.use(express.static('public'));
+
+ const Storage= multer.diskStorage({
+    destination:function(req, file,cb){
+      cb(null, path.join(__dirname,'../public/sellerImages'), function(err, succ){
+        if(err) throw err
+      });
+    },
+    filename:(req,file,cb)=>{
+      const filename= Date.now()+'_'+file.originalname;
+       cb(null, filename, function(error,success){
+        if(error) throw error;
+       })
+    }
+});
+  var upLoad = multer({
+    storage:Storage,
+  
+
+  });
+router.post("/", upLoad.single('proImg'), Seller_User, async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error)
@@ -44,4 +70,5 @@ app.get("/api/seller_user", (req, res) => {
   });
   res.send("Sale users backend");
 });
+
 module.exports = router;
