@@ -15,8 +15,6 @@ const Sellers = () => {
   });
   if (!isSuccess) return [];
 
-  console.log(data);
-
   return (
     <>
       <section className="sellers__container">
