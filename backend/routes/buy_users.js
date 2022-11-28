@@ -2,9 +2,8 @@ const express = require("express");
 const { Buyers_User, validate } = require("../models/buyer_user");
 const { Seller_User } = require("../models/seller_user");
 
-const joi = require("joi");
 const bcrypt = require("bcrypt");
-const app= express();
+const app = express();
 const router = express.Router();
 router.post("/", async (req, res) => {
   try {
@@ -46,6 +45,6 @@ app.get("/api/buyer_user", (req, res) => {
       res.status(200).send(data);
     }
   });
-  res.send("Welcome to the first Node.js Tutorial! - Clue Mediator");
+  res.send("Buyer data");
 });
 module.exports = router;

@@ -21,8 +21,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connection();
 
 //Routes
-app.use("/api/sale_users",  saleUserRoutes);
-app.use("/api/buy_users",  buyUserRoutes);
+app.use("/api/sale_users", saleUserRoutes);
+app.use("/api/buy_users", buyUserRoutes);
 app.use("/api/auth", authRoutes);
 
 // request handlers
@@ -32,16 +32,13 @@ app.get("/api/sale_users", (req, res) => {
       res.status(500).send(err);
     } else {
       //res.status(200).send(data);
-      return res.json(data)
+      return res.json(data);
     }
   });
 
- // res.send("Rezoqvik backend");
+  // res.send("Rezoqvik backend");
 
-
-    //Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
-    return res.json(data);
-  });
+  // return res.json(data);
 });
 
 const port = process.env.PORT || 8080;
