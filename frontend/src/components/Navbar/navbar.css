@@ -65,9 +65,28 @@ input[type="checkbox"] {
   bottom: -5%;
 }
 
-@media screen and (max-width: 600px) {
+.navbar-lists-mobile {
+  height: 32px;
+  display: none;
+}
+
+.nav-toggle {
+  font-size: 2rem;
+  font-weight: 700;
+  fill: var(--gradient-purple);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
   .navbar {
-    flex-direction: column;
-    justify-content: center;
+    padding: 2rem;
+  }
+
+  .navbar-lists {
+    display: none;
+  }
+
+  .navbar-lists-mobile {
+    display: block;
   }
 }

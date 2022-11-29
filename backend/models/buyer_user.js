@@ -16,6 +16,8 @@ userSchema.methods.generateAuthToken = function () {
   const b_token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
     expiresIn: "3d",
   });
+
+  console.log(`Token from buyer user ${b_token}`);
   return b_token;
 };
 

@@ -48,3 +48,9 @@
   -webkit-background-clip: text;
   color: transparent;
 }
+
+@media screen and (max-width: 650px) {
+  .seller__card {
+    max-width: 100%;
+  }
+}

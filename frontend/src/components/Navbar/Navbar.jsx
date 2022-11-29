@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { HiMenu } from "react-icons/hi";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -23,6 +24,12 @@ const Navbar = () => {
             <Link to="/signup">
               <button className="sign-btn btn">Sign Up</button>
             </Link>
+          </li>
+        </ul>
+
+        <ul className="navbar-lists-mobile">
+          <li className="nav-links">
+            <HiMenu className="nav-toggle" />
           </li>
         </ul>
       </nav>
