@@ -30,7 +30,7 @@ const Storage = multer.diskStorage({
   },
 });
 
-let upLoad = multer({
+const upLoad = multer({
   storage: Storage,
 });
 

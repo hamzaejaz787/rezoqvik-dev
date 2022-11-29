@@ -125,7 +125,7 @@
 @media screen and (max-width: 1300px) {
   .dashboard__form {
     min-height: 100vh;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: space-between;
   }
 }
