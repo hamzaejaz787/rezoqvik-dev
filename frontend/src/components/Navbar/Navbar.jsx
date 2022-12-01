@@ -52,7 +52,7 @@ const Navbar = () => {
             )}
           </li>
           {toggleNav && (
-            <div className="navbar__lists_container">
+            <div className="navbar__lists_container pop-up-left">
               <div className="navbar__lists_container-menu">
                 <Menu />
               </div>

@@ -164,3 +164,9 @@ input[type="checkbox"] {
     display: flex;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .navbar__lists_container-menu {
+    min-width: 35vw;
+  }
+}

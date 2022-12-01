@@ -12,10 +12,7 @@ const Signup = () => {
   return (
     <div className="signup">
       <div className="signup__container">
-        <h3>
-          Sign Up as a client or
-          <br />a worker
-        </h3>
+        <h3>Sign Up as a seller or buyer</h3>
 
         <div className="signup__container_options">
           <ul>

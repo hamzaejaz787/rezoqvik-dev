@@ -127,3 +127,9 @@
 .password_show-icon svg:hover {
   fill: #131313;
 }
+
+@media screen and (max-width: 425px) {
+  .login__container h3 {
+    text-align: center;
+  }
+}

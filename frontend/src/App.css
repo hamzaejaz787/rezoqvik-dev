@@ -69,3 +69,25 @@ li {
   border-bottom-right-radius: 50px;
   text-transform: uppercase;
 }
+
+.pop-up-left {
+  -webkit-animation: pop-up-left 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation: pop-up-left 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+@-webkit-keyframes pop-up-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pop-up-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
