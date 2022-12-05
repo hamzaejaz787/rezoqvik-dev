@@ -1,20 +1,53 @@
 const express = require("express");
 const { Buyers_User, validate } = require("../models/buyer_user");
 const { Seller_User } = require("../models/seller_user");
+const multer = require("multer");
+const joi = require("joi");
 const bcrypt = require("bcrypt");
+const app= express();
 const router = express.Router();
+const path = require('path');
 
-router.post("/", async (req, res) => {
+const imgStore = multer.diskStorage({
+
+  destination:function(req, file,cb){
+    cb(null, path.join(__dirname,'../public/buyerImages'), function(err, succ){
+      if(err) throw err
+    });
+  },
+  filename:(req,file,cb)=>{
+    cb(null,`imgae-${Date.now()}. ${file.originalname}`)
+  }
+})
+  // img filter
+const isImg = (req,file,callback)=>{
+  if(file.mimetype.startsWith("image")){
+      callback(null,true)
+  }else{
+      callback(new Error("only images is allowd"))
+  }
+}
+  const upload = multer({
+    storage: imgStore,
+    fileFilter : isImg
+
+  })
+
+router.post("/",upload.single('proImg'), async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error)
       if (error)
         return res.status(400).send({ message: error.details[0].message });
-
-    const user = await Seller_User.findOne({ email: req.body.email });
-    const buyer = await Buyers_User.findOne({ email: req.body.email });
-
-    if (user || buyer)
+    //Buyer email check
+    let user = await Buyers_User.findOne({ email: req.body.email });
+    if (user)
+      return res
+        .status(409)
+        .send({ message: "User With given email already exits" });
+    //Seller email check
+    let seller = await Seller_User.findOne({ email: req.body.email });
+    if (seller)
       return res
         .status(409)
         .send({ message: "User With given email already exits" });
@@ -27,9 +60,20 @@ router.post("/", async (req, res) => {
       cPassword: hashPassword,
     }).save();
     res.status(201).send({ message: "User Created Sccussfully" });
+    console.log(imgStore.getFilename);
   } catch (error) {
     res.status(500).send({ message: error });
   }
 });
 
+app.get("/api/buyer_user", (req, res) => {
+  Buyers_User.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+  res.send("Welcome to the first Node.js Tutorial! - Clue Mediator");
+});
 module.exports = router;
