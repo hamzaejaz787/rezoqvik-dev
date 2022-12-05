@@ -33,11 +33,7 @@ router.post("/", async (req, res) => {
     }
     const token = user.generateAuthToken();
     res.status(200).send({ data: token, message: "logged In Successfully" });
-
-    if (!valid_buyerPassword) {
-      return res.status(401).send({ message: "Invalid buyer password" });
-    }
-    const b_token = buyer.generateAuthToken();
+const b_token = buyer.generateAuthToken();
     res.status(200).send({ data: b_token, message: "logged In Successfully" });
   } catch (error) {
     res.status(500).send({ message: "Internal server error" });
@@ -46,12 +42,8 @@ router.post("/", async (req, res) => {
 
 const validate = (data) => {
   const schema = joi.object({
-    email: joi
-      .string()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "co"] } })
-      .label("E-Mail")
-      .required(),
-    password: joi.string().label("Password").required(),
+    email: joi.string().email().required().label("E-Mail"),
+    password: joi.string().required().label("Password"),
   });
   return schema.validate(data);
 };
