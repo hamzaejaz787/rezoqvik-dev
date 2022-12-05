@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Select from "react-select";
 import DashboardCard from "./DashboardCard/DashboardCard";
-
 import DashboardUpload from "./DashboardUpload/DashboardUpload";
-
 import "./dashboard-form.css";
 
 const DashboardForm = ({
@@ -141,7 +139,7 @@ const DashboardForm = ({
             </label>
           </form>
 
-          <button className="form-btn btn">Save All</button>
+          <button className="form-btn btn">Update</button>
         </div>
 
         <div className="dashboard__aside">

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const joi = require("joi");
-const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
   proImg: String,
@@ -16,6 +15,8 @@ userSchema.methods.generateAuthToken = function () {
   const b_token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, {
     expiresIn: "3d",
   });
+
+  console.log(`Token from buyer user ${b_token}`);
   return b_token;
 };
 

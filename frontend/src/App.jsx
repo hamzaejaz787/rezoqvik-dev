@@ -10,16 +10,14 @@ import {
   Signup,
   Login,
   ForgotPassword,
-  UserSettings,
   SellerDashboard,
   BuyerDashboard,
 } from "./pages/export";
 import "./App.css";
 
 function App() {
-  // const user = localStorage.getItem("token");
-  // console.log(user);
-
+  // const token = localStorage.getItem("token");
+  // console.log(token);
   return (
     <>
       <Navbar />
@@ -32,7 +30,6 @@ function App() {
         <Route path="/signupbuyer" element={<SignupBuyer />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/usersettings" element={<UserSettings />} />
         <Route path="/buyerdashboard" element={<BuyerDashboard />} />
         <Route path="/sellerdashboard" element={<SellerDashboard />} />
       </Routes>

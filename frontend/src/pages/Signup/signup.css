@@ -24,6 +24,8 @@
   color: transparent;
   font-size: 2rem;
   line-height: 2.75rem;
+  max-width: 3 0px;
+  margin: 0 auto;
   text-transform: capitalize;
   text-align: center;
 }
@@ -75,4 +77,22 @@
 .signup__container_options .btn {
   padding: 0.85rem 2rem;
   margin: 1em 0;
+}
+
+@media screen and (max-width: 425px) {
+  .signup__container h3 {
+    font-size: 1.5rem;
+  }
+
+  .signup__container_options ul {
+    min-height: 75px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .signup__container_options .btn {
+    width: 100%;
+    text-align: center;
+  }
 }
