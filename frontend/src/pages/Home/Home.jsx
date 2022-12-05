@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <section className="intro__container">
-        <h1 className="intro__container-title">Work. Done.</h1>
+        <h1 className="intro__container-title">Get. Work. Done.</h1>
         <p className="intro__container-text">
           Connecting you to over 100,000 professionals around Pakistan
         </p>

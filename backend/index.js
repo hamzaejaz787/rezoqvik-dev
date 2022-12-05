@@ -10,14 +10,12 @@ const authRoutes = require("./routes/auth");
 const { Seller_User } = require("./models/seller_user");
 const { Buyers_User } = require("./models/buyer_user");
 
-// middleWares
 app.use(express.json());
 app.use(cors());
 
-// parse application/json
 app.use(bodyParser.json());
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // database connection
 connection();
 
@@ -31,7 +29,6 @@ app.get("/api/sale_users", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      //res.status(200).send(data);
       return res.status(200).json(data);
     }
   });
@@ -42,7 +39,6 @@ app.get("/api/buy_users", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      //res.status(200).send(data);
       return res.status(200).json(data);
     }
   });
