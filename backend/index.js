@@ -8,6 +8,7 @@ const saleUserRoutes = require("./routes/sale_users");
 const buyUserRoutes = require("./routes/buy_users");
 const authRoutes = require("./routes/auth");
 const { Seller_User } = require("./models/seller_user");
+const { Buyers_User } = require("./models/buyer_user");
 
 // middleWares
 app.use(express.json());
@@ -25,14 +26,24 @@ app.use("/api/sale_users", saleUserRoutes);
 app.use("/api/buy_users", buyUserRoutes);
 app.use("/api/auth", authRoutes);
 
-// request handlers
 app.get("/api/sale_users", (req, res) => {
   Seller_User.find((err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
       //res.status(200).send(data);
-      return res.json(data);
+      return res.status(200).json(data);
+    }
+  });
+});
+
+app.get("/api/buy_users", (req, res) => {
+  Buyers_User.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      //res.status(200).send(data);
+      return res.status(200).json(data);
     }
   });
 });

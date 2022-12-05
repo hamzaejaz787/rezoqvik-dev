@@ -1,25 +1,20 @@
 const express = require("express");
 const { Buyers_User, validate } = require("../models/buyer_user");
 const { Seller_User } = require("../models/seller_user");
-
 const bcrypt = require("bcrypt");
-const app = express();
 const router = express.Router();
+
 router.post("/", async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error)
       if (error)
         return res.status(400).send({ message: error.details[0].message });
-    //Buyer email check
-    let user = await Buyers_User.findOne({ email: req.body.email });
-    if (user)
-      return res
-        .status(409)
-        .send({ message: "User With given email already exits" });
-    //Seller email check
-    let seller = await Seller_User.findOne({ email: req.body.email });
-    if (seller)
+
+    const user = await Seller_User.findOne({ email: req.body.email });
+    const buyer = await Buyers_User.findOne({ email: req.body.email });
+
+    if (user || buyer)
       return res
         .status(409)
         .send({ message: "User With given email already exits" });
@@ -37,14 +32,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-app.get("/api/buyer_user", (req, res) => {
-  Buyers_User.find((err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  });
-  res.send("Buyer data");
-});
 module.exports = router;
