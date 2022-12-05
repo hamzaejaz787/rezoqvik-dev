@@ -1,15 +1,9 @@
 const express = require("express");
-const bodyParser=require("body-parser")
-const multer  = require('multer')
+const bodyParser = require("body-parser");
 const { Seller_User, validate } = require("../models/seller_user");
 const { Buyers_User } = require("../models/buyer_user");
-const app = express();
 const bcrypt = require("bcrypt");
-const path= require("path")
-
 const router = express.Router();
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended:true}));
 
 router.use(express.static('public'));
 
@@ -31,6 +25,10 @@ router.use(express.static('public'));
 
   });
 router.post("/", upload.single('proImg'), Seller_User, async (req, res) => {
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(express.static("public"));
+
   try {
     const { error } = validate(req.body ,res.upload);
     if (error)
@@ -59,17 +57,6 @@ router.post("/", upload.single('proImg'), Seller_User, async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: error });
   }
-});
-
-app.get("/api/seller_user", (req, res) => {
-  Seller_User.find((err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  });
-  res.send("Welcome to the first Node.js Tutorial! - Clue Mediator");
 });
 
 module.exports = router;

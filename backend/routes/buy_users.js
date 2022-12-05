@@ -3,8 +3,8 @@ const { Buyers_User, validate } = require("../models/buyer_user");
 const { Seller_User } = require("../models/seller_user");
 const multer = require("multer");
 const joi = require("joi");
+
 const bcrypt = require("bcrypt");
-const app= express();
 const router = express.Router();
 const path = require('path');
 
@@ -34,20 +34,18 @@ const isImg = (req,file,callback)=>{
   })
 
 router.post("/",upload.single('proImg'), async (req, res) => {
+
+
   try {
     const { error } = validate(req.body);
     if (error)
       if (error)
         return res.status(400).send({ message: error.details[0].message });
-    //Buyer email check
-    let user = await Buyers_User.findOne({ email: req.body.email });
-    if (user)
-      return res
-        .status(409)
-        .send({ message: "User With given email already exits" });
-    //Seller email check
-    let seller = await Seller_User.findOne({ email: req.body.email });
-    if (seller)
+
+    const user = await Seller_User.findOne({ email: req.body.email });
+    const buyer = await Buyers_User.findOne({ email: req.body.email });
+
+    if (user || buyer)
       return res
         .status(409)
         .send({ message: "User With given email already exits" });
@@ -66,14 +64,4 @@ router.post("/",upload.single('proImg'), async (req, res) => {
   }
 });
 
-app.get("/api/buyer_user", (req, res) => {
-  Buyers_User.find((err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  });
-  res.send("Welcome to the first Node.js Tutorial! - Clue Mediator");
-});
 module.exports = router;
