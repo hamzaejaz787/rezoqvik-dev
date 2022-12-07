@@ -9,7 +9,7 @@ const Seller = ({ sellerImage, sellerName, sellerTitle }) => {
         <img src={sellerImage} alt="userimg" />
         <h4 className="seller__card_user-name">{sellerName}</h4>
         <small className="seller__card_user-title">{sellerTitle}</small>
-        <Link to="/signup" className="seller__card_user-link btn">
+        <Link to="/signupbuyer" className="seller__card_user-link btn">
           Hire now
         </Link>
       </div>

@@ -27,15 +27,16 @@ const SignupSeller = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (data.password !== data.cPassword) {
-      alert("Password does not match");
+      alert("Passwords dont match!!!");
     } else {
       try {
         const url = "http://localhost:8080/api/sale_users";
-
         const { data: res } = await axios.post(url, data);
+
         setError("");
         setLoading(true);
         navigate("/sellerdashboard");
+
         console.log(res.message);
       } catch (error) {
         console.log(error);
@@ -52,8 +53,8 @@ const SignupSeller = () => {
         <form
           className="signup__container-form"
           method="POST"
-          onSubmit={handleSubmit}
           encType="multipart/form-data"
+          onSubmit={handleSubmit}
         >
           <input
             type="file"
