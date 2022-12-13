@@ -4,7 +4,7 @@ import Seller from "../../components/Seller/Seller";
 import "./sellers.css";
 
 const fetchUsers = async () => {
-  const { data } = await axios.get("http://localhost:8080/api/sale_users");
+  const { data } = await axios.get("http://localhost:8080/api/users");
   return data;
 };
 
