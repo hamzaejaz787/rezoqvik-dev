@@ -7,11 +7,8 @@ const {
 } = require("../controllers/userController");
 const { protect } = require("../middleware/authJwt");
 
-// router.route("/").get(getSeller).post(setSeller);
-// router.route("/:id").put(updateSeller).delete(deleteSeller);
-
 router.post("/", registerUser);
 router.post("/login", loginUser);
-router.get("/seller", getSeller);
+router.get("/seller", protect, getSeller);
 
 module.exports = router;
