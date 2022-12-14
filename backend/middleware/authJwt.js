@@ -1,24 +1,36 @@
 const jwt = require("jsonwebtoken");
+const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const Seller = require("../models/sellerModel");
 
-verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
+const protect = asyncHandler(async (req, res, next) => {
+  let token;
 
-  if (!token) {
-    return res.status(403).send({ message: "No token provided!" });
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    try {
+      //Get token from the header
+      token = req.headers.authorization.split(" ")[1];
+
+      //Verify token
+      const decoded = jwt.verify(token, process.env.JWTPRIVATEKEY);
+
+      //Get user using token without password
+      req.user = await User.findById(decoded.id).select("-password");
+
+      next();
+    } catch (error) {
+      res.status(401);
+      throw new Error("Unauthorised");
+    }
   }
 
-  jwt.verify(token, "rezoquick-secret-key", (err, decoded) => {
-    if (err) {
-      return res.status(401).send({ message: "Unauthorized!" });
-    }
+  if (!token) {
+    res.status(401);
+    throw new Error("Unauthorised. No token provided");
+  }
+});
 
-    req.userId = decoded.id;
-    next();
-  });
-};
-
-const authJwt = { verifyToken };
-
-module.exports = authJwt;
+module.exports = { protect };

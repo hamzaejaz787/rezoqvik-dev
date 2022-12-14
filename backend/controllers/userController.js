@@ -1,55 +1,115 @@
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const Seller = require("../models/sellerModel");
+
+const registerUser = asyncHandler(async (req, res) => {
+  const { firstName, lastName, email, password, cPassword } = req.body;
+
+  if (!firstName || !lastName || !email || !password || !cPassword) {
+    res.status(400);
+    throw new Error("Please add all the required fields");
+  }
+
+  //Check if the users already exist
+  const userExists = await User.findOne({ email });
+  const sellerExists = await Seller.findOne({ email });
+  if (userExists || sellerExists) {
+    res.status(400);
+    throw new Error("Email already exists");
+  }
+
+  //Hash passwords
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  const hashedConfirmPassword = await bcrypt.hash(cPassword, salt);
+
+  //Create user
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    password: hashedPassword,
+    cPassword: hashedConfirmPassword,
+  });
+
+  const seller = await Seller.create({
+    firstName,
+    lastName,
+    email,
+    password: hashedPassword,
+    cPassword: hashedConfirmPassword,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      token: generateToken(user._id),
+    });
+  } else if (seller) {
+    res.status(201).json({
+      _id: seller.id,
+      firstName: seller.firstName,
+      lastName: seller.lastName,
+      email: seller.email,
+      token: generateToken(seller._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
+});
+
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  //Check for user email
+  const user = await User.findOne({ email });
+  const seller = await Seller.findOne({ email });
+
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.json({
+      _id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      token: generateToken(user._id),
+    });
+  } else if (seller && (await bcrypt.compare(password, seller.password))) {
+    res.json({
+      _id: seller.id,
+      firstName: seller.firstName,
+      lastName: seller.lastName,
+      email: seller.email,
+      token: generateToken(seller._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid credentials!");
+  }
+});
 
 const getUser = asyncHandler(async (req, res) => {
-  const users = await User.find();
-  res.status(200).json(users);
+  const { _id, firstName, lastName, email } = await User.findById(req.user.id);
+
+  res.status(200).json({ _id, firstName, lastName, email });
 });
 
-const setUser = asyncHandler(async (req, res) => {
-  if (!req.body) {
-    res.status(400);
-    throw new Error("Please add user info!");
-  }
-  const user = await User.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-    cPassword: req.body.cPassword,
-  });
-  res.status(200).json(user);
+const getSeller = asyncHandler(async (req, res) => {
+  const { _id, firstName, lastName, email } = await Seller.findById(
+    req.seller.id
+  );
+
+  res.status(200).json({ _id, firstName, lastName, email });
 });
 
-const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-
-  if (!user) {
-    res.status(400);
-    throw new Error("User not found");
-  }
-
-  const updatedUser = await User.findByIdAndUpdate(req.params.id.at, req.body, {
-    new: true,
-  });
-  res.status(200).json(updatedUser);
-});
-
-const deleteUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-
-  if (!user) {
-    res.status(400);
-    throw new Error("User not found");
-  }
-
-  await user.remove();
-  res.status(200).json({ id: req.params.id });
-});
-
-module.exports = {
-  getUser,
-  setUser,
-  updateUser,
-  deleteUser,
+//Generate Token
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWTPRIVATEKEY, { expiresIn: "2d" });
 };
+
+module.exports = { registerUser, loginUser, getUser, getSeller };

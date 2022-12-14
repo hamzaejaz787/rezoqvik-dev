@@ -17,19 +17,13 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data: res } = await axios.post(
-        "http://localhost:8080/api/auth",
+        "http://localhost:8080/api/users/login",
         data
       );
       localStorage.setItem("token", res.data);
       navigate("/buyerdashboard");
     } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
+      setError(error);
     }
   };
 

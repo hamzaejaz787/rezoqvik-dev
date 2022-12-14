@@ -30,14 +30,12 @@ const SignupSeller = () => {
       alert("Passwords dont match!!!");
     } else {
       try {
-        const url = "http://localhost:8080/api/sale_users";
+        const url = "http://localhost:8080/api/sellers";
         const { data: res } = await axios.post(url, data);
 
         setError("");
-        setLoading(true);
+        setLoading(false);
         navigate("/sellerdashboard");
-
-        console.log(res.message);
       } catch (error) {
         console.log(error);
       }

@@ -16,8 +16,6 @@ import {
 import "./App.css";
 
 function App() {
-  // const token = localStorage.getItem("token");
-  // console.log(token);
   return (
     <>
       <Navbar />

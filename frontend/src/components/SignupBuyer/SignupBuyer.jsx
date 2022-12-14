@@ -29,14 +29,14 @@ const SignupBuyer = () => {
       alert("Password does not match");
     } else {
       try {
-        const url = "http://localhost:8080/api/buy_users";
-
+        const url = "http://localhost:8080/api/users";
         const { data: res } = await axios.post(url, data);
+
         setError("");
-        setLoading(true);
+        setLoading(false);
         navigate("/buyerdashboard");
-        console.log(res.message);
       } catch (error) {
+        setError(error);
         console.log(error);
       }
     }
@@ -47,9 +47,7 @@ const SignupBuyer = () => {
       <div className="signup">
         <div className="signup__container">
           <h3>Join Us to Hire Talent</h3>
-
           {error && alert(error)}
-
           <form
             className="signup__container-form"
             method="POST"
@@ -63,7 +61,6 @@ const SignupBuyer = () => {
               value={data.proImg}
               name="proImg"
             />
-
             <input
               type="text"
               name="firstName"
