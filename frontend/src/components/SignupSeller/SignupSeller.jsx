@@ -32,7 +32,6 @@ const SignupSeller = () => {
       try {
         const url = "http://localhost:8080/api/sellers";
         const { data: seller } = await axios.post(url, data);
-
         setError("");
         setLoading(false);
         navigate("/sellerdashboard");
