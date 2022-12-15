@@ -34,13 +34,13 @@ const registerUser = asyncHandler(async (req, res) => {
     cPassword: hashedConfirmPassword,
   });
 
-  const seller = await Seller.create({
-    firstName,
-    lastName,
-    email,
-    password: hashedPassword,
-    cPassword: hashedConfirmPassword,
-  });
+  // const seller = await Seller.create({
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   password: hashedPassword,
+  //   cPassword: hashedConfirmPassword,
+  // });
 
   if (user) {
     res.status(201).json({
@@ -50,7 +50,42 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       token: generateToken(user._id),
     });
-  } else if (seller) {
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
+});
+
+const registerSeller = asyncHandler(async (req, res) => {
+  const { firstName, lastName, email, password, cPassword } = req.body;
+
+  if (!firstName || !lastName || !email || !password || !cPassword) {
+    res.status(400);
+    throw new Error("Please add all the required fields");
+  }
+
+  //Check if the users already exist
+  const userExists = await User.findOne({ email });
+  const sellerExists = await Seller.findOne({ email });
+  if (userExists || sellerExists) {
+    res.status(400);
+    throw new Error("Email already exists");
+  }
+
+  //Hash passwords
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  const hashedConfirmPassword = await bcrypt.hash(cPassword, salt);
+
+  const seller = await Seller.create({
+    firstName,
+    lastName,
+    email,
+    password: hashedPassword,
+    cPassword: hashedConfirmPassword,
+  });
+
+  if (seller) {
     res.status(201).json({
       _id: seller.id,
       firstName: seller.firstName,
@@ -99,17 +134,9 @@ const getUser = asyncHandler(async (req, res) => {
   res.status(200).json({ _id, firstName, lastName, email });
 });
 
-const getSeller = asyncHandler(async (req, res) => {
-  const { _id, firstName, lastName, email } = await Seller.findById(
-    req.seller.id
-  );
-
-  res.status(200).json({ _id, firstName, lastName, email });
-});
-
 //Generate Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWTPRIVATEKEY, { expiresIn: "2d" });
 };
 
-module.exports = { registerUser, loginUser, getUser, getSeller };
+module.exports = { registerUser, registerSeller, loginUser, getUser };

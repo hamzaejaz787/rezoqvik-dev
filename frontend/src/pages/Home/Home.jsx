@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./home.css";
 import Sellers from "../../containers/Sellers/Sellers";
+import Categories from "../../containers/Categories/Categories";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       </section>
 
       <Sellers />
+      <Categories />
     </>
   );
 };

@@ -42,13 +42,9 @@ const ForgotPassword = () => {
           />
 
           <button disabled={loading} type="submit">
-            Reset
+            Recover Password
           </button>
         </form>
-
-        <div className="forgot__password_container-login">
-          <Link to="/login">Log In</Link>
-        </div>
 
         <div className="forgot__password_container-signup">
           Need an account? <Link to="/signup">Sign Up</Link>

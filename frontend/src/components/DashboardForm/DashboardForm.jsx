@@ -120,7 +120,10 @@ const DashboardForm = ({
                 placeholder="Enter your address"
               />
             </label>
-
+            <label className="form-label">
+              ZIP/Postal Code
+              <input type="number" className="form-input" placeholder="12345" />
+            </label>
             <label className="form-label">
               City
               <input type="text" className="form-input" placeholder="City " />
@@ -134,8 +137,8 @@ const DashboardForm = ({
               />
             </label>
             <label className="form-label">
-              ZIP/Postal Code
-              <input type="number" className="form-input" placeholder="ZIP" />
+              Country
+              <input type="text" className="form-input" placeholder="Country" />
             </label>
           </form>
 

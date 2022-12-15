@@ -16,11 +16,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data: res } = await axios.post(
+      const { data: user } = await axios.post(
         "http://localhost:8080/api/users/login",
         data
       );
-      localStorage.setItem("token", res.data);
+      localStorage.setItem("token", user.token);
+      console.log(localStorage.token);
       navigate("/buyerdashboard");
     } catch (error) {
       setError(error);

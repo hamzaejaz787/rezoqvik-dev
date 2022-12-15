@@ -31,7 +31,7 @@ const SignupSeller = () => {
     } else {
       try {
         const url = "http://localhost:8080/api/sellers";
-        const { data: res } = await axios.post(url, data);
+        const { data: seller } = await axios.post(url, data);
 
         setError("");
         setLoading(false);

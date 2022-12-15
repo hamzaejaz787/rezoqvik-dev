@@ -30,7 +30,7 @@ const SignupBuyer = () => {
     } else {
       try {
         const url = "http://localhost:8080/api/users";
-        const { data: res } = await axios.post(url, data);
+        const { data: user } = await axios.post(url, data);
 
         setError("");
         setLoading(false);
