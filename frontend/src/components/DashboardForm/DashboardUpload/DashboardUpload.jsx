@@ -1,5 +1,5 @@
 import { ImAttachment } from "react-icons/im";
-import img from "../../../assets/51.jpg";
+import img from "../../../assets/18.jpg";
 import "./dashboard-upload.css";
 
 const DashboardUpload = () => {

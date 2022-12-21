@@ -1,4 +1,4 @@
-import userOne from "../../assets/85.jpg";
+import userOne from "../../assets/18.jpg";
 import programming from "../../assets/code-glasses.jpeg";
 import DashboardForm from "../../components/DashboardForm/DashboardForm";
 import "./seller-dashboard.css";

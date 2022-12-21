@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import SignupSeller from "./components/SignupSeller/SignupSeller";
-import SignupBuyer from "./components/SignupBuyer/SignupBuyer";
+import SignupSeller from "./pages/SignupSeller/SignupSeller";
+import SignupBuyer from "./pages/SignupBuyer/SignupBuyer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
