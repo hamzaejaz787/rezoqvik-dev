@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 import "./signup-buyer.css";
 
 const SignupBuyer = () => {
@@ -13,31 +14,32 @@ const SignupBuyer = () => {
     password: "",
     cPassword: "",
   });
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  //Toggle password display
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (data.password !== data.cPassword) {
-      alert("Password does not match");
+      toast.error("Passwords do not match");
     } else {
       try {
-        const url = "http://localhost:8080/api/users";
-        const { data: user } = await axios.post(url, data);
+        const URL = "http://localhost:8080/api/users";
+        const res = await axios.post(URL, data);
 
-        setError("");
-        setLoading(false);
+        if (res.data) {
+          localStorage.setItem("buyer", JSON.stringify(res.data));
+        }
         navigate("/buyerdashboard");
       } catch (error) {
-        setError(error);
-        console.log(error);
+        toast.error(error.response.data.message);
       }
     }
   };
@@ -47,7 +49,6 @@ const SignupBuyer = () => {
       <div className="signup">
         <div className="signup__container">
           <h3>Join Us to Hire Talent</h3>
-          {error && alert(error)}
           <form
             className="signup__container-form"
             method="POST"
@@ -111,9 +112,7 @@ const SignupBuyer = () => {
               required
             />
 
-            <button disabled={loading} type="submit">
-              Sign Up
-            </button>
+            <button type="submit">Sign Up</button>
           </form>
           <div className="signup__container-login">
             Already have an account? <Link to="/login">Log In</Link>

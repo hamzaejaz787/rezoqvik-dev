@@ -1,8 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import SignupSeller from "./components/SignupSeller/SignupSeller";
 import SignupBuyer from "./components/SignupBuyer/SignupBuyer";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Home,
   AboutUs,
@@ -18,19 +19,22 @@ import "./App.css";
 function App() {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/signupseller" element={<SignupSeller />} />
-        <Route path="/signupbuyer" element={<SignupBuyer />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/buyerdashboard" element={<BuyerDashboard />} />
-        <Route path="/sellerdashboard" element={<SellerDashboard />} />
-      </Routes>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signupseller" element={<SignupSeller />} />
+          <Route path="/signupbuyer" element={<SignupBuyer />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/buyerdashboard" element={<BuyerDashboard />} />
+          <Route path="/sellerdashboard" element={<SellerDashboard />} />
+        </Routes>
+      </Router>
+      <ToastContainer />
     </>
   );
 }

@@ -21,7 +21,7 @@ const Sellers = () => {
         <h3 className="sellers__container-title">Top Rated Profiles</h3>
 
         <div className="sellers__container-cards">
-          {data.slice(0, 15).map((user) => (
+          {data.slice(0, 6).map((user) => (
             <Seller
               sellerImage={user.proImg}
               sellerName={user.firstName}

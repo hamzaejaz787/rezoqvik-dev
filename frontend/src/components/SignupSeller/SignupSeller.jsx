@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import { toast } from "react-toastify";
 import "./signup-seller.css";
 
 const SignupSeller = () => {
@@ -14,38 +15,44 @@ const SignupSeller = () => {
     password: "",
     cPassword: "",
   });
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  //Toggle password display
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+
+  //Handle onchange events
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
+
+  //Send data to the API
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (data.password !== data.cPassword) {
-      alert("Passwords dont match!!!");
+      toast.error("Passwords do not match!");
     } else {
       try {
-        const url = "http://localhost:8080/api/sellers";
-        const { data: seller } = await axios.post(url, data);
-        setError("");
-        setLoading(false);
+        const URL = "http://localhost:8080/api/sellers";
+        const res = await axios.post(URL, data);
+
+        if (res.data) {
+          localStorage.setItem("user", JSON.stringify(res.data));
+        }
+
         navigate("/sellerdashboard");
       } catch (error) {
-        console.log(error);
+        toast.error(error.response.data.message);
       }
     }
   };
+
   return (
     <div className="signup">
       <div className="signup__container">
         <h3>Sign Up to Find Work</h3>
-
-        {error && alert(error)}
 
         <form
           className="signup__container-form"
@@ -111,9 +118,7 @@ const SignupSeller = () => {
             required
           />
 
-          <button disabled={loading} type="submit">
-            Sign Up
-          </button>
+          <button type="submit">Sign Up</button>
         </form>
         <div className="signup__container-login">
           Already have an account? <Link to="/login">Log In</Link>
