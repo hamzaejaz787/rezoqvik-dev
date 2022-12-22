@@ -1,23 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import Seller from "../../components/Seller/Seller";
 import Spinner from "../../components/Spinner/Spinner";
+import Fetch from "../../contexts/Fetch";
 import { toast } from "react-toastify";
 import "./sellers.css";
-
-const fetchUsers = async () => {
-  const { data } = await axios.get("http://localhost:8080/api/sellers/seller");
-  return data;
-};
 
 const Sellers = () => {
   const { data, status } = useQuery({
     queryKey: ["users"],
-    queryFn: fetchUsers,
+    queryFn: Fetch,
   });
+
   if (status === "loading") return <Spinner />;
 
-  if (status === "error") return toast.error("Failed to get users");
+  if (status === "error") return toast.error("Failed to load content");
 
   return (
     <>

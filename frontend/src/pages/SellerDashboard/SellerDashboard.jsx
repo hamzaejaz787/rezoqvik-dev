@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import userOne from "../../assets/18.jpg";
 import programming from "../../assets/code-glasses.jpeg";
 import DashboardForm from "../../components/DashboardForm/DashboardForm";
@@ -14,6 +17,12 @@ const sellerInfo = [
 ];
 
 const SellerDashboard = () => {
+  const navigate = useNavigate();
+  const { seller } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!seller) navigate("/login");
+  }, [seller, navigate]);
   return (
     <>
       <section className="seller__dashboard">

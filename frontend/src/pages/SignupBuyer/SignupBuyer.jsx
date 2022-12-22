@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { register, reset } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
+import Spinner from "../../components/Spinner/Spinner";
 import "./signup-buyer.css";
 
 const SignupBuyer = () => {
@@ -14,7 +16,23 @@ const SignupBuyer = () => {
     password: "",
     cPassword: "",
   });
+
+  const { proImg, firstName, lastName, email, password, cPassword } = data;
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+
+    if (isSuccess || user) navigate("/buyerdashboard");
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   //Toggle password display
   const [passwordShown, setPasswordShown] = useState(false);
@@ -22,27 +40,25 @@ const SignupBuyer = () => {
     setPasswordShown(!passwordShown);
   };
 
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
+  const handleChange = (e) => {
+    setData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
-  const handleSubmit = async (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (data.password !== data.cPassword) {
+    if (password !== cPassword) {
       toast.error("Passwords do not match");
     } else {
-      try {
-        const URL = "http://localhost:8080/api/users";
-        const res = await axios.post(URL, data);
+      const userData = { proImg, firstName, lastName, email, password };
 
-        if (res.data) {
-          localStorage.setItem("buyer", JSON.stringify(res.data));
-        }
-        navigate("/buyerdashboard");
-      } catch (error) {
-        toast.error(error.response.data.message);
-      }
+      dispatch(register(userData));
     }
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
@@ -59,14 +75,14 @@ const SignupBuyer = () => {
               type="file"
               accept="image/png, image/jpeg"
               onChange={handleChange}
-              value={data.proImg}
+              value={proImg}
               name="proImg"
             />
             <input
               type="text"
               name="firstName"
               onChange={handleChange}
-              value={data.firstName}
+              value={firstName}
               placeholder="First Name *"
               required
             />
@@ -74,14 +90,14 @@ const SignupBuyer = () => {
               type="text"
               name="lastName"
               onChange={handleChange}
-              value={data.lastName}
+              value={lastName}
               placeholder="Last Name"
             />
             <input
               type="email"
               name="email"
               onChange={handleChange}
-              value={data.email}
+              value={email}
               placeholder="Business Email Address *"
               required
             />
@@ -90,7 +106,7 @@ const SignupBuyer = () => {
                 type={passwordShown ? "text" : "password"}
                 name="password"
                 onChange={handleChange}
-                value={data.password}
+                value={password}
                 placeholder="Password"
                 required
               />
@@ -107,7 +123,7 @@ const SignupBuyer = () => {
               type="password"
               name="cPassword"
               onChange={handleChange}
-              value={data.cPassword}
+              value={cPassword}
               placeholder="Confirm Password *"
               required
             />

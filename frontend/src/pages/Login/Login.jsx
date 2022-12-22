@@ -1,8 +1,10 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { login, reset } from "../../features/auth/authSlice";
+import Spinner from "../../components/Spinner/Spinner";
 import "./login.css";
 
 const Login = () => {
@@ -10,7 +12,24 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const { email, password } = data;
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, seller, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+
+    if (isSuccess || user || seller)
+      navigate(user ? "/buyerdashboard" : "/sellerdashboard");
+
+    dispatch(reset());
+  }, [seller, user, isError, isSuccess, message, navigate, dispatch]);
 
   //Toggle password display
   const [passwordShown, setPasswordShown] = useState(false);
@@ -18,23 +37,21 @@ const Login = () => {
     setPasswordShown(!passwordShown);
   };
 
-  //Handle onchange events
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
+  const handleChange = (e) => {
+    setData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  //Send data to API
+  //POST Data
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const URL = "http://localhost:8080/api/users/login";
-      const res = await axios.post(URL, data);
-      localStorage.setItem("user", res.data);
-      navigate("/buyerdashboard");
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
+    const userData = { email, password };
+    dispatch(login(userData));
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="login">

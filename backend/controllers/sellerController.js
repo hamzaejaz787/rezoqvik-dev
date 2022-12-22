@@ -2,8 +2,8 @@ const asyncHandler = require("express-async-handler");
 const Seller = require("../models/sellerModel");
 
 const getSellers = asyncHandler(async (req, res) => {
-  //Get seller data without passwords
-  const sellers = await Seller.find().select("-password -cPassword ");
+  //Gets seller data without passwords
+  const sellers = await Seller.find().select("-password -cPassword");
   res.json(sellers);
 });
 

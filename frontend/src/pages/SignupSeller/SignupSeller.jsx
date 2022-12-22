@@ -1,12 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
+import { registerSeller, reset } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
+import Spinner from "../../components/Spinner/Spinner";
 import "./signup-seller.css";
 
 const SignupSeller = () => {
-  // code for user registration
   const [data, setData] = useState({
     proImg: "",
     firstName: "",
@@ -15,7 +16,23 @@ const SignupSeller = () => {
     password: "",
     cPassword: "",
   });
+
+  const { proImg, firstName, lastName, email, password, cPassword } = data;
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { seller, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+
+    if (isSuccess || seller) navigate("/sellerdashboard");
+
+    dispatch(reset());
+  }, [seller, isError, isSuccess, message, navigate, dispatch]);
 
   //Toggle password display
   const [passwordShown, setPasswordShown] = useState(false);
@@ -23,31 +40,22 @@ const SignupSeller = () => {
     setPasswordShown(!passwordShown);
   };
 
-  //Handle onchange events
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
 
-  //Send data to the API
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (data.password !== data.cPassword) {
-      toast.error("Passwords do not match!");
+    if (password !== cPassword) {
+      toast.error("Passwords do not match");
     } else {
-      try {
-        const URL = "http://localhost:8080/api/sellers";
-        const res = await axios.post(URL, data);
+      const sellerData = { proImg, firstName, lastName, email, password };
 
-        if (res.data) {
-          localStorage.setItem("user", JSON.stringify(res.data));
-        }
-
-        navigate("/sellerdashboard");
-      } catch (error) {
-        toast.error(error.response.data.message);
-      }
+      dispatch(registerSeller(sellerData));
     }
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="signup">

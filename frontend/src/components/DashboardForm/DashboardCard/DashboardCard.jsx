@@ -15,12 +15,14 @@ const DashboardCard = ({
           src={userBackground}
           alt={`${userName} profile background`}
           className="card-background"
+          loading="lazy"
         />
 
         <img
           src={userImage}
           alt={`${userName} profile pic`}
           className="card-image"
+          loading="lazy"
         />
 
         <div className="card-wrapper">

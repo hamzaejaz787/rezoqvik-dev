@@ -5,9 +5,9 @@ const User = require("../models/userModel");
 const Seller = require("../models/sellerModel");
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password, cPassword } = req.body;
+  const { proImg, firstName, lastName, email, password } = req.body;
 
-  if (!firstName || !lastName || !email || !password || !cPassword) {
+  if (!firstName || !lastName || !email || !password) {
     res.status(400);
     throw new Error("Please add all the required fields");
   }
@@ -23,28 +23,20 @@ const registerUser = asyncHandler(async (req, res) => {
   //Hash passwords
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const hashedConfirmPassword = await bcrypt.hash(cPassword, salt);
 
   //Create user
   const user = await User.create({
+    proImg,
     firstName,
     lastName,
     email,
     password: hashedPassword,
-    cPassword: hashedConfirmPassword,
   });
-
-  // const seller = await Seller.create({
-  //   firstName,
-  //   lastName,
-  //   email,
-  //   password: hashedPassword,
-  //   cPassword: hashedConfirmPassword,
-  // });
 
   if (user) {
     res.status(201).json({
       _id: user.id,
+      proImg: user.proImg,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -57,9 +49,9 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const registerSeller = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password, cPassword } = req.body;
+  const { proImg, firstName, lastName, email, password } = req.body;
 
-  if (!firstName || !lastName || !email || !password || !cPassword) {
+  if (!firstName || !lastName || !email || !password) {
     res.status(400);
     throw new Error("Please add all the required fields");
   }
@@ -75,19 +67,19 @@ const registerSeller = asyncHandler(async (req, res) => {
   //Hash passwords
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const hashedConfirmPassword = await bcrypt.hash(cPassword, salt);
 
   const seller = await Seller.create({
+    proImg,
     firstName,
     lastName,
     email,
     password: hashedPassword,
-    cPassword: hashedConfirmPassword,
   });
 
   if (seller) {
     res.status(201).json({
       _id: seller.id,
+      proImg: seller.proImg,
       firstName: seller.firstName,
       lastName: seller.lastName,
       email: seller.email,
@@ -124,7 +116,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Invalid credentials!");
+    throw new Error("Incorrect email or password!");
   }
 });
 

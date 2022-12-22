@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import { Link } from "react-router-dom";
 import {
   carpenter,
   cleaner,
@@ -18,26 +18,26 @@ const Categories = () => {
         <div className="categories__container_icons">
           <div className="icon_wrapper">
             <img src={carpenter} alt="carpenter" />
-            <a href="#">Carpenter</a>
+            <Link to="/login">Carpenter</Link>
           </div>
           <div className="icon_wrapper">
             <img src={cleaner} alt="cleaner" />
-            <a href="#">Cleaner</a>
+            <Link to="/login">Cleaner</Link>
           </div>
           <div className="icon_wrapper">
             <img src={electrician} alt="electrician" />
-            <a href="#">Electrician</a>
+            <Link to="/login">Electrician</Link>
           </div>
           <div className="icon_wrapper">
             <img src={painter} alt="painter" />
-            <a href="#">Painter</a>
+            <Link to="/login">Painter</Link>
           </div>
           <div className="icon_wrapper">
             <img src={plumber} alt="plumber" />
-            <a href="#">Plumber</a>
+            <Link to="/login">Plumber</Link>
           </div>
           <div className="icon_wrapper icon-others">
-            <BsThreeDots className="dots" /> <a href="#">Others</a>
+            <BsThreeDots className="dots" /> <Link to="/login">Others</Link>
           </div>
         </div>
       </section>

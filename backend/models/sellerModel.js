@@ -17,10 +17,6 @@ const sellerSchema = mongoose.Schema(
       type: String,
       required: [true, "Password required!"],
     },
-    cPassword: {
-      type: String,
-      required: [true, "Correct password required!"],
-    },
   },
   {
     timestamps: true,

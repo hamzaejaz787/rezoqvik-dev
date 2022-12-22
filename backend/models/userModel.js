@@ -17,10 +17,6 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Password required!"],
     },
-    cPassword: {
-      type: String,
-      required: [true, "Correct password is required!"],
-    },
   },
   {
     timestamps: true,
