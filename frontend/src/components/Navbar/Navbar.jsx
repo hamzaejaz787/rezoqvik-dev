@@ -1,30 +1,24 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, reset } from "../../features/auth/authSlice";
 
 import "./navbar.css";
 
-const Menu = () => (
-  <>
-    <li className="nav-links line">
-      <Link to="/about">Learn More</Link>
-    </li>
-    <li className="nav-links line">
-      <Link to="/support">Support</Link>
-    </li>
-    <li className="nav-links line">
-      <Link to="/login">Log In</Link>
-    </li>
-    <li className="nav-links">
-      <Link to="/signup">
-        <button className="sign-btn btn">Sign Up</button>
-      </Link>
-    </li>
-  </>
-);
-
 const Navbar = () => {
   const [toggleNav, setToggleNav] = useState();
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, seller } = useSelector((state) => state.auth);
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/login");
+  };
 
   return (
     <>
@@ -34,7 +28,30 @@ const Navbar = () => {
         </Link>
 
         <ul className="navbar-lists">
-          <Menu />
+          <li className="nav-links line">
+            <Link to="/about">Learn More</Link>
+          </li>
+          <li className="nav-links line">
+            <Link to="/support">Support</Link>
+          </li>
+          {user || seller ? (
+            <li className="nav-links line">
+              <button className="sign-btn btn" onClick={onLogout}>
+                Log Out
+              </button>
+            </li>
+          ) : (
+            <>
+              <li className="nav-links line">
+                <Link to="/login">Log In</Link>
+              </li>
+              <li className="nav-links">
+                <Link to="/signup">
+                  <button className="sign-btn btn">Sign Up</button>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
 
         <div className="navbar-lists-mobile">
@@ -54,7 +71,30 @@ const Navbar = () => {
           {toggleNav && (
             <div className="navbar__lists_container pop-up-left">
               <div className="navbar__lists_container-menu">
-                <Menu />
+                <li className="nav-links line">
+                  <Link to="/about">Learn More</Link>
+                </li>
+                <li className="nav-links line">
+                  <Link to="/support">Support</Link>
+                </li>
+                {user || seller ? (
+                  <li className="nav-links line">
+                    <button className="sign-btn btn" onClick={onLogout}>
+                      Log Out
+                    </button>
+                  </li>
+                ) : (
+                  <>
+                    <li className="nav-links line">
+                      <Link to="/login">Log In</Link>
+                    </li>
+                    <li className="nav-links">
+                      <Link to="/signup">
+                        <button className="sign-btn btn">Sign Up</button>
+                      </Link>
+                    </li>
+                  </>
+                )}
               </div>
             </div>
           )}

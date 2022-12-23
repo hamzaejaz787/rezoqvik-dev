@@ -1,49 +1,63 @@
-import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./forgotpassword.css";
+import { toast } from "react-toastify";
+import Spinner from "../../components/Spinner/Spinner";
 
 const ForgotPassword = () => {
-  const emailRef = useRef();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
+  const [data, setData] = useState({
+    email: "",
+  });
+
+  const { email } = data;
+
+  const navigate = useNavigate();
+  const { isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+
+    if (isSuccess) toast.success(message);
+
+    if (user) navigate("/");
+  }, [user, navigate, isError, message, isSuccess]);
+
+  const handleChange = (e) => {
+    setData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    try {
-      setError("");
-      setLoading(true);
-
-      setMessage("Check your inbox for further instructions");
-    } catch {
-      setError("Failed to reset password");
-    }
-
-    setLoading(false);
   }
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="forgot__password">
       <div className="forgot__password_container">
         <h3>Reset Password</h3>
 
-        {error && alert(error)}
-        {message && alert(message)}
         <form
           className="forgot__password_container-form"
           onSubmit={handleSubmit}
         >
           <input
             type="email"
-            ref={emailRef}
+            name="email"
+            onChange={handleChange}
             placeholder="Email Address"
             required
           />
 
-          <button disabled={loading} type="submit">
-            Recover Password
-          </button>
+          <button type="submit">Recover Password</button>
         </form>
 
         <div className="forgot__password_container-signup">

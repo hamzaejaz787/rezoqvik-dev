@@ -71,6 +71,7 @@ const Login = () => {
             <input
               type={passwordShown ? "text" : "password"}
               name="password"
+              autoComplete="none"
               onChange={handleChange}
               value={data.password}
               placeholder="Password"
