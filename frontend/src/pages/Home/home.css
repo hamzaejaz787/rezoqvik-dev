@@ -29,6 +29,25 @@
   letter-spacing: 1px;
 }
 
+.intro__container_logged {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro__container_logged h1 {
+  font-size: 2.75rem;
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-purple),
+    var(--gradient-pink)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 @media screen and (max-width: 550px) {
   .intro__container-title {
     font-size: 2.5rem;

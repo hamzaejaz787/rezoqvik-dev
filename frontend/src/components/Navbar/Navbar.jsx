@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
+import Spinner from "../../components/Spinner/Spinner";
 
 import "./navbar.css";
 
@@ -12,7 +13,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, seller } = useSelector((state) => state.auth);
+  const { user, seller, isLoading } = useSelector((state) => state.auth);
 
   const onLogout = () => {
     dispatch(logout());
@@ -20,6 +21,7 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  if (isLoading) return <Spinner />;
   return (
     <>
       <nav className="navbar">
