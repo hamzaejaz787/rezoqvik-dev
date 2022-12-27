@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const SellerSchema = mongoose.Schema(
   {
+    proImg: {
+      type: String,
+    },
     role: {
       type: String,
     },

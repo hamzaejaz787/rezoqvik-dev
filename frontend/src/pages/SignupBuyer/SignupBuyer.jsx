@@ -79,7 +79,6 @@ const SignupBuyer = () => {
               type="file"
               accept="image/png, image/jpeg"
               onChange={handleChange}
-              value={proImg}
               name="proImg"
             />
             <input

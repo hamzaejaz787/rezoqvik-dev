@@ -25,7 +25,7 @@ const SellerDashboard = () => {
           userImage={proImg ? proImg : userOne}
           userName={`${firstName} ${lastName}`}
           userTitle={email}
-          userLocation="Islamabad, PK "
+          userLocation="Islamabad, PK"
         />
       </section>
     </>

@@ -3,6 +3,9 @@ const joi = require("joi");
 
 const UserSchema = mongoose.Schema(
   {
+    proImg: {
+      type: String,
+    },
     role: {
       type: String,
     },
