@@ -21,7 +21,7 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  if(isLoading) return <Spinner/>
+  if (isLoading) return <Spinner />;
   return (
     <>
       <nav className="navbar">
@@ -29,21 +29,27 @@ const Navbar = () => {
           <h3>Rezoqvik</h3>
         </Link>
 
+        {/* Desktop navbar */}
         <ul className="navbar-lists">
-          <li className="nav-links line">
-            <Link to="/about">Learn More</Link>
-          </li>
-          <li className="nav-links line">
-            <Link to="/support">Support</Link>
-          </li>
           {user || seller ? (
-            <li className="nav-links line">
-              <button className="sign-btn btn" onClick={onLogout}>
-                Log Out
-              </button>
-            </li>
+            <>
+              <li className="nav-links line">
+                <Link to="/">Dashboard</Link>
+              </li>
+              <li className="nav-links line">
+                <button className="sign-btn btn" onClick={onLogout}>
+                  Log Out
+                </button>
+              </li>
+            </>
           ) : (
             <>
+              <li className="nav-links line">
+                <Link to="/about">Learn More</Link>
+              </li>
+              <li className="nav-links line">
+                <Link to="/support">Support</Link>
+              </li>
               <li className="nav-links line">
                 <Link to="/login">Log In</Link>
               </li>
@@ -56,6 +62,7 @@ const Navbar = () => {
           )}
         </ul>
 
+        {/* Mobile Navbar */}
         <div className="navbar-lists-mobile">
           <li className="nav-links">
             {toggleNav ? (

@@ -22,7 +22,9 @@ const Home = () => {
             <p className="intro__container-text">
               Connecting you to over 100,000 professionals around Pakistan
             </p>
-            <Link className="intro-cta btn">Get connected</Link>
+            <Link to="/login" className="intro-cta btn">
+              Get connected
+            </Link>
           </section>
 
           <Sellers />

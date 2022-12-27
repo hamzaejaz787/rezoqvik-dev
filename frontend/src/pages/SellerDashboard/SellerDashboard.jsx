@@ -6,19 +6,13 @@ import programming from "../../assets/code-glasses.jpeg";
 import DashboardForm from "../../components/DashboardForm/DashboardForm";
 import "./seller-dashboard.css";
 
-const sellerInfo = [
-  {
-    userBackground: programming,
-    userImage: userOne,
-    userName: "Neil Sims",
-    userTitle: "Frontend Developer",
-    userLocation: "Karachi, Pakistan",
-  },
-];
-
 const SellerDashboard = () => {
   const navigate = useNavigate();
   const { seller } = useSelector((state) => state.auth);
+
+  const { proImg, firstName, lastName, email } = JSON.parse(
+    localStorage.getItem("user")
+  );
 
   useEffect(() => {
     if (!seller) navigate("/login");
@@ -26,16 +20,13 @@ const SellerDashboard = () => {
   return (
     <>
       <section className="seller__dashboard">
-        {sellerInfo.map((item, index) => (
-          <DashboardForm
-            userBackground={item.userBackground}
-            userImage={item.userImage}
-            userName={item.userName}
-            userTitle={item.userTitle}
-            userLocation={item.userLocation}
-            key={item.userTitle + index}
-          />
-        ))}
+        <DashboardForm
+          userBackground={programming}
+          userImage={proImg ? proImg : userOne}
+          userName={`${firstName} ${lastName}`}
+          userTitle={email}
+          userLocation="Islamabad, PK "
+        />
       </section>
     </>
   );
