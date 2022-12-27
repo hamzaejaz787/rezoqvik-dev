@@ -10,6 +10,7 @@ import "./signup-seller.css";
 const SignupSeller = () => {
   const [data, setData] = useState({
     proImg: "",
+    role: "seller",
     firstName: "",
     lastName: "",
     email: "",
@@ -17,7 +18,8 @@ const SignupSeller = () => {
     cPassword: "",
   });
 
-  const { proImg, firstName, lastName, email, password, cPassword } = data;
+  const { proImg, role, firstName, lastName, email, password, cPassword } =
+    data;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -49,7 +51,7 @@ const SignupSeller = () => {
     if (password !== cPassword) {
       toast.error("Passwords do not match");
     } else {
-      const sellerData = { proImg, firstName, lastName, email, password };
+      const sellerData = { proImg, role, firstName, lastName, email, password };
 
       dispatch(registerSeller(sellerData));
     }

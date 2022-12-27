@@ -21,7 +21,7 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  if (isLoading) return <Spinner />;
+  if(isLoading) return <Spinner/>
   return (
     <>
       <nav className="navbar">

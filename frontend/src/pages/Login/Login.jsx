@@ -25,8 +25,11 @@ const Login = () => {
   useEffect(() => {
     if (isError) toast.error(message);
 
-    if (isSuccess || user || seller)
-      navigate(user ? "/buyerdashboard" : "/sellerdashboard");
+    if ((isSuccess && user) || (isSuccess && seller)) {
+      const { role } = JSON.parse(localStorage.getItem("user"));
+
+      navigate(role === "buyer" ? "/buyerdashboard" : "/sellerdashboard");
+    }
 
     dispatch(reset());
   }, [seller, user, isError, isSuccess, message, navigate, dispatch]);

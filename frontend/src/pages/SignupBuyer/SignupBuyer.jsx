@@ -10,6 +10,7 @@ import "./signup-buyer.css";
 const SignupBuyer = () => {
   const [data, setData] = useState({
     proImg: "",
+    role: "buyer",
     firstName: "",
     lastName: "",
     email: "",
@@ -17,7 +18,8 @@ const SignupBuyer = () => {
     cPassword: "",
   });
 
-  const { proImg, firstName, lastName, email, password, cPassword } = data;
+  const { proImg, role, firstName, lastName, email, password, cPassword } =
+    data;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,7 +31,9 @@ const SignupBuyer = () => {
   useEffect(() => {
     if (isError) toast.error(message);
 
-    if (isSuccess || user) navigate("/buyerdashboard");
+    if (isSuccess || user) {
+      navigate("/buyerdashboard");
+    }
 
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
@@ -52,7 +56,7 @@ const SignupBuyer = () => {
     if (password !== cPassword) {
       toast.error("Passwords do not match");
     } else {
-      const userData = { proImg, firstName, lastName, email, password };
+      const userData = { proImg, role, firstName, lastName, email, password };
 
       dispatch(register(userData));
     }

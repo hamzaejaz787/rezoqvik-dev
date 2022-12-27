@@ -3,6 +3,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const Seller = require("../models/sellerModel");
 
+//Verify User token
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
@@ -32,5 +33,33 @@ const protect = asyncHandler(async (req, res, next) => {
     throw new Error("Unauthorised. No token provided");
   }
 });
+
+//Verify Seller token
+// const protectSeller = asyncHandler(async (req, res, next) => {
+//   let token;
+
+//   if (
+//     req.headers.authorization &&
+//     req.headers.authorization.startsWith("Bearer")
+//   ) {
+//     try {
+//       token = req.headers.authorization.split(" ")[1];
+
+//       const decoded = jwt.verify(token, process.env.JWTPRIVATEKEY);
+
+//       req.seller = await Seller.findById(decoded.id).select("-password");
+
+//       next();
+//     } catch (error) {
+//       res.status(401);
+//       throw new Error("Unauthorised!");
+//     }
+//   }
+
+//   if (!token) {
+//     res.status(401);
+//     throw new Error("Unauthorised. No token provided!!");
+//   }
+// });
 
 module.exports = { protect };

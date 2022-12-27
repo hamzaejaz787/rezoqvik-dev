@@ -5,7 +5,7 @@ const User = require("../models/userModel");
 const Seller = require("../models/sellerModel");
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { proImg, firstName, lastName, email, password } = req.body;
+  const { proImg, role, firstName, lastName, email, password } = req.body;
 
   if (!firstName || !lastName || !email || !password) {
     res.status(400);
@@ -27,6 +27,7 @@ const registerUser = asyncHandler(async (req, res) => {
   //Create user
   const user = await User.create({
     proImg,
+    role,
     firstName,
     lastName,
     email,
@@ -37,6 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(201).json({
       _id: user.id,
       proImg: user.proImg,
+      role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -49,7 +51,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const registerSeller = asyncHandler(async (req, res) => {
-  const { proImg, firstName, lastName, email, password } = req.body;
+  const { proImg, role, firstName, lastName, email, password } = req.body;
 
   if (!firstName || !lastName || !email || !password) {
     res.status(400);
@@ -70,6 +72,7 @@ const registerSeller = asyncHandler(async (req, res) => {
 
   const seller = await Seller.create({
     proImg,
+    role,
     firstName,
     lastName,
     email,
@@ -80,6 +83,7 @@ const registerSeller = asyncHandler(async (req, res) => {
     res.status(201).json({
       _id: seller.id,
       proImg: seller.proImg,
+      role: seller.role,
       firstName: seller.firstName,
       lastName: seller.lastName,
       email: seller.email,
@@ -99,16 +103,18 @@ const loginUser = asyncHandler(async (req, res) => {
   const seller = await Seller.findOne({ email });
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
+    res.status(200).json({
       _id: user.id,
+      role: user.role,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       token: generateToken(user._id),
     });
   } else if (seller && (await bcrypt.compare(password, seller.password))) {
-    res.json({
+    res.status(200).json({
       _id: seller.id,
+      role: seller.role,
       firstName: seller.firstName,
       lastName: seller.lastName,
       email: seller.email,
