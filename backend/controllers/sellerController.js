@@ -3,8 +3,13 @@ const Seller = require("../models/sellerModel");
 
 const getSellers = asyncHandler(async (req, res) => {
   //Gets seller data without passwords
-  const sellers = await Seller.find().select("-password -cPassword");
+  const sellers = await Seller.find().select("-password");
   res.json(sellers);
 });
 
-module.exports = { getSellers };
+const getSellerById = asyncHandler(async (req, res) => {
+  const seller = await Seller.findById(req.params.id).select("-password");
+  res.status(200).json(seller);
+});
+
+module.exports = { getSellers, getSellerById };

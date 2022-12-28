@@ -1,5 +1,5 @@
 import imgOne from "../../assets/18.jpg";
-import imgTwo from "../../assets/2.jpg";
+import imgTwo from "../../assets/18.jpg";
 import Testimonial from "../../components/Testimonial/Testimonial";
 import { Carousel } from "react-responsive-carousel";
 import "./testimonials.css";

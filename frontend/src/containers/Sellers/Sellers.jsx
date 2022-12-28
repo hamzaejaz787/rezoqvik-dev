@@ -7,7 +7,7 @@ import "./sellers.css";
 
 const Sellers = () => {
   const { data, status } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["sellers"],
     queryFn: Fetch,
   });
 

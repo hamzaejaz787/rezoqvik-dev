@@ -1,18 +1,35 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./home.css";
 import Sellers from "../../containers/Sellers/Sellers";
 import Categories from "../../containers/Categories/Categories";
 
+import "./home.css";
+
 const Home = () => {
   const { user, seller } = useSelector((state) => state.auth);
+
+  const data = JSON.parse(localStorage.getItem("user"));
 
   return (
     <>
       {user || seller ? (
         <>
           <section className="intro__container_logged">
-            <h1>Logged In Content</h1>
+            {data.role === "buyer" ? (
+              <>
+                <h1 className="intro__container-title">Find Your Worker</h1>
+                <p className="intro__container-text">
+                  Connecting you to over 100,000 professionals around Pakistan
+                </p>
+                <Sellers />
+                <Categories />
+              </>
+            ) : (
+              <>
+                <h1 className="intro__container-title">Find Work</h1>
+                <Categories />
+              </>
+            )}
           </section>
         </>
       ) : (

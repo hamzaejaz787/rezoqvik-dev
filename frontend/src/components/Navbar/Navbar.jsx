@@ -1,27 +1,24 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
-import Spinner from "../../components/Spinner/Spinner";
 
 import "./navbar.css";
 
 const Navbar = () => {
   const [toggleNav, setToggleNav] = useState();
+  //Get user role from localstorage and show navigation based on the role
+  const data = JSON.parse(localStorage.getItem("user"));
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const { user, seller, isLoading } = useSelector((state) => state.auth);
+  const { user, seller } = useSelector((state) => state.auth);
 
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate("/login");
   };
 
-  if (isLoading) return <Spinner />;
   return (
     <>
       <nav className="navbar">
@@ -33,9 +30,20 @@ const Navbar = () => {
         <ul className="navbar-lists">
           {user || seller ? (
             <>
-              <li className="nav-links line">
-                <Link to="/">Dashboard</Link>
-              </li>
+              {data.role === "buyer" ? (
+                <>
+                  <li className="nav-links line">
+                    <Link to="/buyerdashboard">Dashboard</Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-links line">
+                    <Link to="/sellerdashboard">Dashboard</Link>
+                  </li>
+                </>
+              )}
+
               <li className="nav-links line">
                 <button className="sign-btn btn" onClick={onLogout}>
                   Log Out
@@ -87,11 +95,26 @@ const Navbar = () => {
                   <Link to="/support">Support</Link>
                 </li>
                 {user || seller ? (
-                  <li className="nav-links line">
-                    <button className="sign-btn btn" onClick={onLogout}>
-                      Log Out
-                    </button>
-                  </li>
+                  <>
+                    {data.role === "buyer" ? (
+                      <>
+                        <li className="nav-links line">
+                          <Link to="/buyerdashboard">Dashboard</Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li className="nav-links line">
+                          <Link to="/sellerdashboard">Dashboard</Link>
+                        </li>
+                      </>
+                    )}
+                    <li className="nav-links line">
+                      <button className="sign-btn btn" onClick={onLogout}>
+                        Log Out
+                      </button>
+                    </li>
+                  </>
                 ) : (
                   <>
                     <li className="nav-links line">

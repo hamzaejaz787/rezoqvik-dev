@@ -14,6 +14,7 @@ import {
   SellerDashboard,
   BuyerDashboard,
 } from "./pages/export";
+import Profile from "./containers/Profile/User";
 import "./App.css";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/buyerdashboard" element={<BuyerDashboard />} />
           <Route path="/sellerdashboard" element={<SellerDashboard />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
       <ToastContainer />

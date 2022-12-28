@@ -26,9 +26,7 @@ const Login = () => {
     if (isError) toast.error(message);
 
     if ((isSuccess && user) || (isSuccess && seller)) {
-      const { role } = JSON.parse(localStorage.getItem("user"));
-
-      navigate(role === "buyer" ? "/buyerdashboard" : "/sellerdashboard");
+      navigate("/");
     }
 
     dispatch(reset());
