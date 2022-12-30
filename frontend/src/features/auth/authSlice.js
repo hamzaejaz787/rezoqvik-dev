@@ -50,18 +50,27 @@ export const registerSeller = createAsyncThunk(
 );
 
 //Login
-export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
-  try {
-    return await authService.login(user);
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
+export const login = createAsyncThunk(
+  "auth/login",
+  async (user, seller, thunkAPI) => {
+    try {
+      if (user) {
+        return await authService.login(user);
+      } else {
+        return await authService.login(seller);
+      }
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
 
-    return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 //Logout user
 export const logout = createAsyncThunk("auth/logout", () => {
@@ -126,6 +135,7 @@ export const authSlice = createSlice({
         state.seller = null;
       })
       .addCase(logout.fulfilled, (state) => {
+        state.isSuccess = true;
         state.user = null;
         state.seller = null;
       });

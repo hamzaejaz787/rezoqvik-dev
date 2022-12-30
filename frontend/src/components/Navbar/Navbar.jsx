@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,16 +8,27 @@ import "./navbar.css";
 
 const Navbar = () => {
   const [toggleNav, setToggleNav] = useState();
+  const [userData, setUserData] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, seller } = useSelector((state) => state.auth);
+  const { user, seller, isSuccess } = useSelector((state) => state.auth);
 
-  const data = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    if (user || seller) {
+      const { role } = JSON.parse(localStorage.getItem("user"));
+
+      setUserData(role);
+    }
+  }, [seller, user, userData]);
 
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
+
+    if (isSuccess) {
+      navigate("/");
+    }
   };
 
   return (
@@ -34,7 +45,7 @@ const Navbar = () => {
               <li className="nav-links line">
                 <Link
                   to={
-                    data.role === "buyer"
+                    userData === "buyer"
                       ? "/buyerdashboard"
                       : "/sellerdashboard"
                   }
@@ -98,7 +109,7 @@ const Navbar = () => {
                     <li className="nav-links line">
                       <Link
                         to={
-                          data.role === "buyer"
+                          userData === "buyer"
                             ? "/buyerdashboard"
                             : "/sellerdashboard"
                         }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import buyerOne from "../../assets/18.jpg";
@@ -7,25 +7,30 @@ import DashboardForm from "../../components/DashboardForm/DashboardForm";
 import "./buyer-dashboard.css";
 
 const BuyerDashboard = () => {
+  const [userData, setUserData] = useState("");
+
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    if (!user) navigate("/login");
-  }, [user, navigate]);
+  if (!user) navigate("/login");
 
-  const { proImg, firstName, lastName, email } = JSON.parse(
-    localStorage.getItem("user")
-  );
+  useEffect(() => {
+    if (user) {
+      const { proImg, firstName, lastName, email } = JSON.parse(
+        localStorage.getItem("user")
+      );
+      setUserData({ proImg, firstName, lastName, email });
+    }
+  }, [user, navigate]);
 
   return (
     <>
       <section className="buyer__dashboard">
         <DashboardForm
           userBackground={programming}
-          userImage={proImg ? proImg : buyerOne}
-          userName={`${firstName} ${lastName}`}
-          userTitle={email}
+          userImage={userData.proImg ? userData.proImg : buyerOne}
+          userName={`${userData.firstName} ${userData.lastName}`}
+          userTitle={userData.email}
           userLocation="Karachi, PK"
         />
       </section>
