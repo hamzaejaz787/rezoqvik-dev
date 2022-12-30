@@ -25,9 +25,7 @@ const Login = () => {
   useEffect(() => {
     if (isError) toast.error(message);
 
-    if ((isSuccess && user) || (isSuccess && seller)) {
-      navigate("/");
-    }
+    if ((isSuccess && user) || (isSuccess && seller)) navigate("/");
 
     dispatch(reset());
   }, [seller, user, isError, isSuccess, message, navigate, dispatch]);

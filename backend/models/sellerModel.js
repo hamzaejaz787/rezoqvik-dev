@@ -17,11 +17,11 @@ const SellerSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, "Email required!"],
+      required: [true, "Email is required!"],
     },
     password: {
       type: String,
-      required: [true, "Password required!"],
+      required: [true, "Password is required!"],
     },
   },
   {
