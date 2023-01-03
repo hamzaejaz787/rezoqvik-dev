@@ -44,6 +44,10 @@ const SignupBuyer = () => {
     setPasswordShown(!passwordShown);
   };
 
+  const handleImage = (e) => {
+    setData((prevState) => ({ ...prevState, proImg: e.target.files[0].name }));
+  };
+
   const handleChange = (e) => {
     setData((prevState) => ({
       ...prevState,
@@ -71,15 +75,14 @@ const SignupBuyer = () => {
           <h3>Join Us to Hire Talent</h3>
           <form
             className="signup__container-form"
-            method="POST"
             encType="multipart/form-data"
             onSubmit={handleSubmit}
           >
             <input
               type="file"
-              accept="image/png, image/jpeg"
-              onChange={handleChange}
+              accept=".png, .jpeg, .jpg"
               name="proImg"
+              onChange={handleImage}
             />
             <input
               type="text"

@@ -6,8 +6,9 @@ const {
   getUser,
 } = require("../controllers/userController");
 const { protect } = require("../middleware/authJwt");
+const parser = require("../config/cloudinary.config");
 
-router.post("/", registerUser);
+router.post("/", parser.single("proImg"), registerUser);
 router.post("/login", loginUser);
 router.get("/user", protect, getUser);
 

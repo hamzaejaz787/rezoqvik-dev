@@ -12,14 +12,14 @@ const BuyerDashboard = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
-  if (!user) navigate("/login");
-
   useEffect(() => {
     if (user) {
-      const { proImg, firstName, lastName, email } = JSON.parse(
+      const { firstName, lastName, email } = JSON.parse(
         localStorage.getItem("user")
       );
-      setUserData({ proImg, firstName, lastName, email });
+      setUserData({ firstName, lastName, email });
+    } else {
+      navigate("/login");
     }
   }, [user, navigate]);
 

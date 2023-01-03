@@ -12,7 +12,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Please add all the required fields");
   }
 
-  //Check if the users already exist
+  //Check if the emails already exist
   const userExists = await User.findOne({ email });
   const sellerExists = await Seller.findOne({ email });
   if (userExists || sellerExists) {
@@ -26,7 +26,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   //Create user
   const user = await User.create({
-    proImg,
+    proImg: req.file.path,
     role,
     firstName,
     lastName,
