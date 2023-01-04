@@ -14,10 +14,10 @@ const BuyerDashboard = () => {
 
   useEffect(() => {
     if (user) {
-      const { firstName, lastName, email } = JSON.parse(
+      const { proImg, firstName, lastName, email } = JSON.parse(
         localStorage.getItem("user")
       );
-      setUserData({ firstName, lastName, email });
+      setUserData({ proImg, firstName, lastName, email });
     } else {
       navigate("/login");
     }

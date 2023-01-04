@@ -45,7 +45,10 @@ const SignupBuyer = () => {
   };
 
   const handleImage = (e) => {
-    setData((prevState) => ({ ...prevState, proImg: e.target.files[0].name }));
+    setData((prevState) => ({
+      ...prevState,
+      proImg: e.target.files[0].name,
+    }));
   };
 
   const handleChange = (e) => {
