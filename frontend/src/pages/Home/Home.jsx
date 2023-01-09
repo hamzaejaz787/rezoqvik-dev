@@ -14,23 +14,24 @@ const Home = () => {
     <>
       {user || seller ? (
         <>
-          <section className="intro__container_logged">
-            {data.role === "buyer" ? (
-              <>
+          {data.role === "buyer" ? (
+            <>
+              <section className="intro__container_logged">
                 <h1 className="intro__container-title">Find Your Worker</h1>
                 <p className="intro__container-text">
                   Connecting you to over 100,000 professionals around Pakistan
                 </p>
-                <Sellers />
+              </section>
+              <Sellers />
+              <Categories />
+            </>
+          ) : (
+            <>
+              <section className="intro__container_logged">
                 <Categories />
-              </>
-            ) : (
-              <>
-                <h1 className="intro__container-title">Find Work</h1>
-                <Categories />
-              </>
-            )}
-          </section>
+              </section>
+            </>
+          )}
         </>
       ) : (
         <>

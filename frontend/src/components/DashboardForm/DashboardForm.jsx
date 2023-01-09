@@ -87,7 +87,7 @@ const DashboardForm = ({
                 value={value}
                 onChange={changeHandler}
                 styles={customStyles}
-                isSearchable={false}
+                isSearchable={true}
               />
             </label>
 

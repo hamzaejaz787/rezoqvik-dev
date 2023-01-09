@@ -47,7 +47,7 @@ const SignupBuyer = () => {
   const handleImage = (e) => {
     setData((prevState) => ({
       ...prevState,
-      proImg: e.target.files[0].name,
+      proImg: e.target.files[0],
     }));
   };
 
@@ -63,7 +63,13 @@ const SignupBuyer = () => {
     if (password !== cPassword) {
       toast.error("Passwords do not match");
     } else {
-      const userData = { proImg, role, firstName, lastName, email, password };
+      const userData = new FormData();
+      userData.append("proImg", proImg);
+      userData.append("role", role);
+      userData.append("firstName", firstName);
+      userData.append("lastName", lastName);
+      userData.append("email", email);
+      userData.append("password", password);
 
       dispatch(register(userData));
     }

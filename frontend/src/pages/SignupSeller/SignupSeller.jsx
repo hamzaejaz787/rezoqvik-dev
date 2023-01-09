@@ -32,7 +32,6 @@ const SignupSeller = () => {
     if (isError) toast.error(message);
 
     if (isSuccess || seller) navigate("/sellerdashboard");
-
     dispatch(reset());
   }, [seller, isError, isSuccess, message, navigate, dispatch]);
 
@@ -40,6 +39,13 @@ const SignupSeller = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
+  };
+
+  const handleImage = (e) => {
+    setData((prevState) => ({
+      ...prevState,
+      proImg: e.target.files[0],
+    }));
   };
 
   const handleChange = ({ currentTarget: input }) => {
@@ -51,7 +57,13 @@ const SignupSeller = () => {
     if (password !== cPassword) {
       toast.error("Passwords do not match");
     } else {
-      const sellerData = { proImg, role, firstName, lastName, email, password };
+      const sellerData = new FormData();
+      sellerData.append("proImg", proImg);
+      sellerData.append("role", role);
+      sellerData.append("firstName", firstName);
+      sellerData.append("lastName", lastName);
+      sellerData.append("email", email);
+      sellerData.append("password", password);
 
       dispatch(registerSeller(sellerData));
     }
@@ -66,15 +78,15 @@ const SignupSeller = () => {
 
         <form
           className="signup__container-form"
-          method="POST"
           encType="multipart/form-data"
           onSubmit={handleSubmit}
         >
           <input
             type="file"
             name="proImg"
-            accept="image/png, image/jpeg"
-            onChange={handleChange}
+            accept=".png, .jpeg, .jpg"
+            required
+            onChange={handleImage}
           />
 
           <input

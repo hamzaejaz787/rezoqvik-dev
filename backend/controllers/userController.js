@@ -33,7 +33,6 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password: hashedPassword,
   });
-
   if (user) {
     res.status(201).json({
       _id: user.id,
@@ -71,7 +70,7 @@ const registerSeller = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   const seller = await Seller.create({
-    proImg,
+    proImg: req.file.path,
     role,
     firstName,
     lastName,
@@ -124,7 +123,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Incorrect email or password!");
+    throw new Error("Invalid credentails!");
   }
 });
 
