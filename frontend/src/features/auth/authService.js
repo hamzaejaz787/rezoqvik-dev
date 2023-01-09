@@ -17,7 +17,7 @@ const registerSeller = async (sellerData) => {
   const response = await axios.post(SELLER_API_URL, sellerData);
 
   if (response.data) {
-    localStorage.setItem("seller", JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
   }
 
   return response.data;
