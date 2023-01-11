@@ -33,7 +33,7 @@ function App() {
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/buyerdashboard" element={<BuyerDashboard />} />
           <Route path="/sellerdashboard" element={<SellerDashboard />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile />} />
         </Routes>
       </Router>
       <ToastContainer />

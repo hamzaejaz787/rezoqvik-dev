@@ -26,6 +26,7 @@ const Sellers = () => {
               sellerImage={user.proImg}
               sellerName={user.firstName}
               sellerTitle={user.email}
+              sellerId={user._id}
               key={user._id}
             />
           ))}
