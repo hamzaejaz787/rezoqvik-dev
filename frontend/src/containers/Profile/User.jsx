@@ -18,9 +18,42 @@ import {
   Services,
   Appointment,
 } from "./imports";
+
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import Spinner from "../../components/Spinner/Spinner";
+import { useParams } from "react-router-dom";
 import "./user.css";
+import axios from "axios";
+import { useEffect } from "react";
 
 const User = () => {
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  let { id } = useParams();
+  const { data, status } = useQuery({
+    queryKey: ["seller"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `http://localhost:8080/api/sellers/seller/${id}`
+      );
+      return data;
+    },
+  });
+
+  if (status === "loading") return <Spinner />;
+
+  if (status === "error") return toast.error("Failed to load content");
+
   return (
     <>
       <section className="user__container">
@@ -32,14 +65,14 @@ const User = () => {
         />
 
         <img
-          src={buyerOne}
+          src={data.proImg ? data.proImg : buyerOne}
           alt=""
           className="user__container_user-img"
           loading="lazy"
         />
 
         <div className="user__container_text-wrapper">
-          <h4 className="user__container-name">User Name</h4>
+          <h4 className="user__container-name">{`${data.firstName} ${data.lastName}`}</h4>
           <small className="user__container-title">Web Developer</small>
 
           {/* SOCIAL MEDIA ICONS */}
@@ -111,7 +144,7 @@ const User = () => {
             <IoMdMail size={24} style={{ fill: "url(#purple-gradient)" }} />
             <div className="user__container_info-card-text">
               <small>E-mail address</small>
-              <h3>current@email.com</h3>
+              <h3>{data.email}</h3>
             </div>
           </div>
           <div className="user__container_info-card">

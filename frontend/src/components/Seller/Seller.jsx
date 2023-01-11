@@ -3,7 +3,7 @@ import userImg from "../../assets/user-placeholder.png";
 import { useSelector } from "react-redux";
 import "./seller.css";
 
-const Seller = ({ sellerImage, sellerName, sellerTitle }) => {
+const Seller = ({ sellerImage, sellerName, sellerTitle, sellerId }) => {
   const { user, seller } = useSelector((state) => state.auth);
 
   return (
@@ -15,7 +15,10 @@ const Seller = ({ sellerImage, sellerName, sellerTitle }) => {
 
         {user || seller ? (
           <>
-            <Link to="/profile" className="seller__card_user-link btn">
+            <Link
+              to={`/profile/${sellerId}`}
+              className="seller__card_user-link btn"
+            >
               Hire now
             </Link>
           </>

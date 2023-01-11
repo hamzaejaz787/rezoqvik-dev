@@ -26,7 +26,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   //Create user
   const user = await User.create({
-    proImg: req.file.path,
+    proImg: req.file.path || proImg,
     role,
     firstName,
     lastName,
@@ -70,7 +70,7 @@ const registerSeller = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   const seller = await Seller.create({
-    proImg: req.file.path,
+    proImg: req.file.path || proImg,
     role,
     firstName,
     lastName,
