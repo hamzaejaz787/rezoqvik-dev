@@ -52,7 +52,7 @@ const User = () => {
 
   if (status === "loading") return <Spinner />;
 
-  if (status === "error") return toast.error("Failed to load content");
+  if (status === "error") return toast.error("Failed to fetch content");
 
   return (
     <>
