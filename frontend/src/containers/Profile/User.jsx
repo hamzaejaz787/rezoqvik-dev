@@ -18,14 +18,27 @@ import {
   Services,
   Appointment,
 } from "./imports";
+
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import Spinner from "../../components/Spinner/Spinner";
 import { useParams } from "react-router-dom";
 import "./user.css";
 import axios from "axios";
+import { useEffect } from "react";
 
 const User = () => {
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   let { id } = useParams();
   const { data, status } = useQuery({
     queryKey: ["seller"],
