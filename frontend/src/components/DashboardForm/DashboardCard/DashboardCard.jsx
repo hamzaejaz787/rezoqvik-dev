@@ -1,4 +1,3 @@
-import { AiOutlineUserAdd } from "react-icons/ai";
 import "./dashboard-card.css";
 
 const DashboardCard = ({
@@ -29,14 +28,6 @@ const DashboardCard = ({
           <h4 className="card-username">{userName}</h4>
           <h5 className="card-title">{userTitle}</h5>
           <small className="card-location">{userLocation}</small>
-
-          <div className="dashboard__aside_card-btns">
-            <button className="card-btn connect-btn">
-              {" "}
-              <AiOutlineUserAdd className="connect-btn-icon" /> Connect
-            </button>
-            <button className="card-btn message-btn">Send Message</button>
-          </div>
         </div>
       </div>
     </>

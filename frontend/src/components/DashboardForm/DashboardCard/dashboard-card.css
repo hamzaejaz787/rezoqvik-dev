@@ -26,12 +26,12 @@
   border-radius: 50%;
   border: 3px solid #fff;
   position: absolute;
-  top: calc(30% + 7px);
+  top: calc(40% - 5px);
 }
 
 .card-wrapper {
   width: 100%;
-  padding: 4rem 2rem 3rem;
+  padding: 4rem 2rem 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,10 +112,6 @@
 @media screen and (max-width: 450px) {
   .form-btn {
     max-width: 100%;
-  }
-
-  .card-wrapper {
-    padding: 4rem 1rem 3rem;
   }
 
   .card-btn {
