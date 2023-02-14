@@ -23,7 +23,7 @@ const Login = () => {
   );
 
   useEffect(() => {
-    if (isError) toast.error(message);
+    if (isError) toast.error(`Error! ${message}`);
 
     if ((isSuccess && user) || (isSuccess && seller)) navigate("/");
 
